@@ -1,13 +1,11 @@
 import {createContext, ReactNode, useContext} from "react";
 import axios from "axios";
-import {SignUpReq} from "../types/auth";
-
-export type ApiResult = {
-    success: boolean;
-}
+import type {LoginReq, LoginRes, SignUpReq} from "../types/auth";
+import type {ApiResult} from "../types/api";
 
 interface AuthContextProps {
     signUp: (SignUpReq) => Promise<ApiResult>;
+    login: (LoginReq) => Promise<LoginRes>;
 }
 
 const AuthContext = createContext<AuthContextProps | null>(null);
@@ -35,8 +33,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
 
         return res.data as ApiResult;
     }
+
+    const login = async (req: LoginReq): Promise<LoginRes> => {
+        const res = await axios.post('/api/auth', req);
+
+        if(res.status != 200) {
+            throw new Error(`Login failed with status code ${res.status}`);
+        }
+
+        return res.data as LoginRes;
+    }
+
     return (
-        <AuthContext.Provider value={{signUp}}>
+        <AuthContext.Provider value={{signUp, login}}>
             {children}
         </AuthContext.Provider>
     )

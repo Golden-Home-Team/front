@@ -7,6 +7,8 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
+    "importsNotUsedAsValues": "remove",
+
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
