@@ -3,6 +3,8 @@ import {Header} from "./component/organisms/Header";
 import {Footer} from "./component/organisms/Footer";
 import {Route, Routes} from "react-router-dom";
 import {RoutePath} from "./RoutePath";
+import {ApiResult, useAuth} from "./context/AuthContext";
+import {useQuery} from "@tanstack/react-query";
 
 
 function App() {
