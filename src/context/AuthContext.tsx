@@ -6,6 +6,7 @@ import type {ApiResult} from "../types/api";
 interface AuthContextProps {
     signUp: (SignUpReq) => Promise<ApiResult>;
     login: (LoginReq) => Promise<LoginRes>;
+    checkUserExists: (id : SignUpReq["loginId"]) => Promise<Boolean>;
 }
 
 const AuthContext = createContext<AuthContextProps | null>(null);
@@ -44,8 +45,21 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
         return res.data as LoginRes;
     }
 
+    const checkUserExists = async (id: SignUpReq["loginId"]): Promise<Boolean> => {
+        const res = await axios.get(`/api/users/signup/loginId/duplicated?loginId=${id}`);
+        if(res.status == 200) {
+            return true
+        }
+
+        if(res.status == 409) {
+            return false
+        }
+
+        throw new Error(`Check user existence failed with status code ${res.status}`);
+    }
+
     return (
-        <AuthContext.Provider value={{signUp, login}}>
+        <AuthContext.Provider value={{signUp, login, checkUserExists}}>
             {children}
         </AuthContext.Provider>
     )

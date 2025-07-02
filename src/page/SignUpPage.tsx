@@ -11,7 +11,7 @@ const SignupPageStyle = styled.div`
 `
 
 export const SignUpPage: FC<SignUpPageProps> = () => {
-    const {signUp, login} = useAuth();
+    const {signUp, login, checkUserExists} = useAuth();
 
     const onSubmit = async () => {
         try {
@@ -47,6 +47,11 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
             <SignupPageStyle>
                 <Button onClick={() => onSubmit()}>회원가입</Button>
                 <Button onClick={() => onLogin()}>로그인</Button>
+                <Button onClick={() => {
+                    checkUserExists("ckstmznf11").then(res => {
+                        console.log(res)
+                    })
+                }}>클릭</Button>
             </SignupPageStyle>
         </PageLayout>
     );
