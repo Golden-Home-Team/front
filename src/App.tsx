@@ -3,8 +3,7 @@ import {Header} from "./component/organisms/Header";
 import {Footer} from "./component/organisms/Footer";
 import {Route, Routes} from "react-router-dom";
 import {RoutePath} from "./RoutePath";
-import {ApiResult, useAuth} from "./context/AuthContext";
-import {useQuery} from "@tanstack/react-query";
+import {SignUpPage} from "./page/SignUpPage";
 
 
 function App() {
@@ -14,6 +13,7 @@ function App() {
             <Routes>
                 <Route index element={<MainPage/>}/>
                 <Route path={RoutePath.main} element={<MainPage/>}/>
+                <Route path={RoutePath.signUp} element={<SignUpPage/>}/>
             </Routes>
             <Footer/>
         </>

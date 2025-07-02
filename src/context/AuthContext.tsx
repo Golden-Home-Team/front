@@ -1,12 +1,6 @@
 import {createContext, ReactNode, useContext} from "react";
 import axios from "axios";
-
-export type SignUpReq = {
-    loginId: string;
-    email: string;
-    password: string;
-    phoneNumber: string;
-}
+import {SignUpReq} from "../types/auth";
 
 export type ApiResult = {
     success: boolean;
