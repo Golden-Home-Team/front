@@ -9,6 +9,7 @@ import CheckItem from "../component/atom/CheckItem";
 import RadioButton from "../component/atom/RadioButton";
 import {IconButton} from "../component/atom/IconButton";
 import {BiCheck} from "react-icons/bi";
+import {useAuth} from "../context/AuthContext";
 
 export type MainPageProps = {}
 
