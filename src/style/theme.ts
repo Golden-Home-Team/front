@@ -133,6 +133,14 @@ export const color = {
   Orange9: "#d9480f",
 
   HeechanBlue: "#586FE9",
+
+  GoldenHome: "#665A4E",
+  secondary: "#FDE09D",
+  active: "#FFCC00",
+
+  inactive: "#CFCFCF",
+  middlePart: "#F1F1F2",
+  ClickGray: "#666666",
 };
 
 export const Theme = {
