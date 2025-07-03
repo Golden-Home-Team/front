@@ -1,12 +1,12 @@
-import {FC, useState} from "react";
+import {FC} from "react";
 import styled from "styled-components";
 import {PageLayout} from "../style/PageLayout";
 import {Button} from "../component/atom/Button";
 import {useAuth} from "../context/AuthContext";
 import type {SignUpReq} from "../types/auth";
-import {Input} from "../component/atom/Input";
-import {LabelWrap} from "../component/atom/LabelWrapProps";
+import {InputLabel} from "../component/molecules/InputLabel";
 import {GoCheck} from "react-icons/go";
+
 
 export type SignUpPageProps = {}
 
@@ -56,17 +56,13 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
                     })
                 }}>클릭</Button>
 
-                <LabelWrap label={"아이디"}>
-                    <Input
-                        value={""}
-                        onChange={() => {
-                        }}
-                        placeholder={"입력"}
-                        rightAddon={(
-                            <GoCheck />
-                        )}
-                    />
-                </LabelWrap>
+                <InputLabel
+                    value={""}
+                    onChange={() => {
+                    }}
+                    label={"이메일"}
+                />
+
             </SignupPageStyle>
         </PageLayout>
     );
