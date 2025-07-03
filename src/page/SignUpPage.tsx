@@ -6,6 +6,7 @@ import {useAuth} from "../context/AuthContext";
 import type {SignUpReq} from "../types/auth";
 import {Input} from "../component/atom/Input";
 import {LabelWrap} from "../component/atom/LabelWrapProps";
+import {GoCheck} from "react-icons/go";
 
 export type SignUpPageProps = {}
 
@@ -61,6 +62,9 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
                         onChange={() => {
                         }}
                         placeholder={"입력"}
+                        rightAddon={(
+                            <GoCheck />
+                        )}
                     />
                 </LabelWrap>
             </SignupPageStyle>
