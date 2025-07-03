@@ -57,12 +57,34 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
                     })
                 }}>클릭</Button>
 
-                <InputLabel
-                    value={name}
-                    onChange={setName}
-                    label={"이메일"}
-                    rightAddon={<InputCheckIcon isSuccess={name.length > 10}/>}
-                />
+                <div style={{"display" : "flex"}}>
+                    <InputLabel
+                        value={name}
+                        onChange={setName}
+                        label={"이메일"}
+                        rightAddon={<InputCheckIcon isSuccess={name.length > 10}/>}
+                        bottomMessage={name.length < 10 && "이메일은 10자 이상 입력해주세요."}
+                        isShowBottomMessageSpace={true}
+                    />
+
+                    <InputLabel
+                        value={name}
+                        onChange={setName}
+                        label={"이메일"}
+                        rightAddon={<InputCheckIcon isSuccess={name.length > 10}/>}
+                        bottomMessage={name.length < 10 && "이메일은 10자 이상 입력해주세요."}
+                        isShowBottomMessageSpace={true}
+                    />
+
+                    <InputLabel
+                        value={name}
+                        onChange={setName}
+                        label={"이메일"}
+                        rightAddon={<InputCheckIcon isSuccess={name.length > 10}/>}
+                        bottomMessage={name.length < 10 && "이메일은 10자 이상 입력해주세요."}
+                        isShowBottomMessageSpace={true}
+                    />
+                </div>
 
             </SignupPageStyle>
         </PageLayout>
