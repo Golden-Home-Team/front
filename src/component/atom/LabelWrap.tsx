@@ -23,7 +23,7 @@ const InputWrap = styled.div`
 `
 
 const Bottom = styled.div<{$isShow : boolean}>`
-  min-height: ${p => p.isShow ? 22 : 0}px;
+  min-height: ${p => p.$isShow ? 22 : 0}px;
   color: ${p => p.theme.color.ClickGray};
   font-size: 12px;
   font-weight: 400;
