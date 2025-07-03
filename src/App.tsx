@@ -4,6 +4,7 @@ import {Footer} from "./component/organisms/Footer";
 import {Route, Routes} from "react-router-dom";
 import {RoutePath} from "./RoutePath";
 import {SignUpPage} from "./page/SignUpPage";
+import {LoginPage} from "./page/LoginPage";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
                 <Route index element={<MainPage/>}/>
                 <Route path={RoutePath.main} element={<MainPage/>}/>
                 <Route path={RoutePath.signUp} element={<SignUpPage/>}/>
+                <Route path={RoutePath.login} element={<LoginPage/>}/>
             </Routes>
             <Footer/>
         </>
