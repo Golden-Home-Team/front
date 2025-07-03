@@ -1,8 +1,8 @@
 import {Input} from "../atom/Input";
 import type {InputProps} from "../atom/Input";
 import {FC} from "react";
-import {LabelWrap} from "../atom/LabelWrapProps";
-import type {LabelWrapProps} from "../atom/LabelWrapProps";
+import type {LabelWrapProps} from "../atom/LabelWrap";
+import {LabelWrap} from "../atom/LabelWrap";
 
 export type InputLabelProps = InputProps & LabelWrapProps
 

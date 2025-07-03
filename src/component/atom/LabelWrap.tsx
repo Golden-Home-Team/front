@@ -22,7 +22,7 @@ const InputWrap = styled.div`
   }
 `
 
-const Bottom = styled.div<{isShow : boolean}>`
+const Bottom = styled.div<{$isShow : boolean}>`
   min-height: ${p => p.isShow ? 22 : 0}px;
   color: ${p => p.theme.color.ClickGray};
   font-size: 12px;
@@ -36,8 +36,8 @@ export const LabelWrap: FC<LabelWrapProps> = ({label, bottomMessage, isShowBotto
             <InputWrap>
                 {children}
             </InputWrap>
-            <Bottom isShow={isShowBottomMessageSpace}>
-                {bottomMessage && bottomMessage}
+            <Bottom $isShow={isShowBottomMessageSpace}>
+                {bottomMessage}
             </Bottom>
         </LabelWrapStyle>
     );

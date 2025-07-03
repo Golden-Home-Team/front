@@ -57,7 +57,7 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
                     })
                 }}>클릭</Button>
 
-                <div style={{"display" : "flex"}}>
+                <div style={{"display" : "flex", "flexDirection": "column"}}>
                     <InputLabel
                         value={name}
                         onChange={setName}
