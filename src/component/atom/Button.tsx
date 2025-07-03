@@ -49,8 +49,8 @@ const ButtonStyle = styled.button<ButtonProps>`
 
   padding: 10px 20px;
   border: none;
-  border-radius: ${p => p.theme.size.borderRadius}px;
-  
+  border-radius: ${p => p.theme.size.borderRadius};
+
   cursor: pointer;
   user-select: none;
 

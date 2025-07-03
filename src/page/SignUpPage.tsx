@@ -4,6 +4,8 @@ import {PageLayout} from "../style/PageLayout";
 import {Button} from "../component/atom/Button";
 import {useAuth} from "../context/AuthContext";
 import type {SignUpReq} from "../types/auth";
+import {Input} from "../component/atom/Input";
+import {LabelWrap} from "../component/atom/LabelWrapProps";
 
 export type SignUpPageProps = {}
 
@@ -15,7 +17,7 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
 
     const onSubmit = async () => {
         try {
-            const req : SignUpReq = {
+            const req: SignUpReq = {
                 email: "ckstmznf@naver.com",
                 loginId: "ckstmznf",
                 password: "qwer1234",
@@ -52,6 +54,15 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
                         console.log(res)
                     })
                 }}>클릭</Button>
+
+                <LabelWrap label={"아이디"}>
+                    <Input
+                        value={""}
+                        onChange={() => {
+                        }}
+                        placeholder={"입력"}
+                    />
+                </LabelWrap>
             </SignupPageStyle>
         </PageLayout>
     );

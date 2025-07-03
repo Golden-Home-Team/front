@@ -9,11 +9,15 @@ export type InputProps = {
 const InputStyle = styled.input`
   font-size: 13px;
 
-  box-shadow: 0 0 0 1px ${p => p.theme.color.Gray3};
+  box-shadow: 0 0 0 1px #A7A7A7;
   border: none;
   border-radius: 5px;
   outline: none;
   padding: 10px;
+  
+  &::placeholder {
+    color : #A7A7A7;
+  }
 `
 
 export const Input: FC<InputProps> = ({value, onChange, ...rest}) => {
