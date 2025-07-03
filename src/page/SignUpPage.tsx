@@ -1,11 +1,11 @@
-import {FC} from "react";
+import {FC, useState} from "react";
 import styled from "styled-components";
 import {PageLayout} from "../style/PageLayout";
 import {Button} from "../component/atom/Button";
 import {useAuth} from "../context/AuthContext";
 import type {SignUpReq} from "../types/auth";
 import {InputLabel} from "../component/molecules/InputLabel";
-import {GoCheck} from "react-icons/go";
+import {InputCheckIcon} from "../InputCheckIcon";
 
 
 export type SignUpPageProps = {}
@@ -15,6 +15,7 @@ const SignupPageStyle = styled.div`
 
 export const SignUpPage: FC<SignUpPageProps> = () => {
     const {signUp, login, checkUserExists} = useAuth();
+    const [name, setName] = useState("")
 
     const onSubmit = async () => {
         try {
@@ -57,10 +58,10 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
                 }}>클릭</Button>
 
                 <InputLabel
-                    value={""}
-                    onChange={() => {
-                    }}
+                    value={name}
+                    onChange={setName}
                     label={"이메일"}
+                    rightAddon={<InputCheckIcon isSuccess={name.length > 10}/>}
                 />
 
             </SignupPageStyle>
