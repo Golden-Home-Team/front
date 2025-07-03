@@ -8,7 +8,7 @@ export type MobileLayoutProps = {
 }
 
 const MobileLayoutStyle = styled.div`
-  height: calc(var(--vh) * 100);
+  height: calc(var(--100vh));
   display: flex;
   flex-direction: column;
 `
