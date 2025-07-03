@@ -8,12 +8,13 @@ export type InputProps = {
 } & ComponentPropsWithRef<'input'>
 
 const Container = styled.div`
-  display: inline;
+  display: inline-block;
 
   position: relative;
 `
 
 const InputStyle = styled.input`
+  width: 100%;
   font-size: 13px;
 
   box-shadow: 0 0 0 1px #A7A7A7;
