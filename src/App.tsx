@@ -4,18 +4,18 @@ import {Footer} from "./component/organisms/Footer";
 import {Route, Routes} from "react-router-dom";
 import {RoutePath} from "./RoutePath";
 import {SignUpPage} from "./page/SignUpPage";
+import {Resize} from "./component/Resize";
 
 
 function App() {
     return (
         <>
-            <Header/>
+            <Resize/>
             <Routes>
                 <Route index element={<MainPage/>}/>
                 <Route path={RoutePath.main} element={<MainPage/>}/>
                 <Route path={RoutePath.signUp} element={<SignUpPage/>}/>
             </Routes>
-            <Footer/>
         </>
     )
 }
