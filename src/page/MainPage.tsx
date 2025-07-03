@@ -2,7 +2,8 @@ import {FC} from "react";
 import styled from "styled-components";
 import {PageLayout} from "../style/PageLayout";
 import {MobileLayout} from "../MobileLayout";
-
+import {IconButton} from "../component/atom/IconButton";
+import {BiCheck} from "react-icons/bi";
 
 export type MainPageProps = {}
 
