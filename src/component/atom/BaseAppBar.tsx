@@ -13,14 +13,15 @@ const BaseAppBarStyle = styled.div`
   justify-content: space-between;
 `
 const LeftWrap = styled.div`
-
+  min-width: 48px;
 `
 const CenterWrap = styled.div`
+  min-width: 48px;
   display: flex;
   justify-content: center;
 `
 const RightWrap = styled.div`
-
+  min-width: 48px;
 `
 export const BaseAppBar: FC<BaseAppBarProps> = ({left, center, right}) => {
     return (

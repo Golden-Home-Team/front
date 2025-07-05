@@ -18,8 +18,6 @@ export const MainPage: FC<MainPageProps> = () => {
                 top={
                     <BaseAppBar
                         left={<BiCheck/>}
-                        center={<h1>Title</h1>}
-                        right={<h1>Right</h1>}
                     />
                 }
                 bottom={<h1>World</h1>}
