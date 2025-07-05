@@ -19,6 +19,7 @@ const CenterWrap = styled.div`
   min-width: 48px;
   display: flex;
   justify-content: center;
+  align-items: center;
 `
 const RightWrap = styled.div`
   min-width: 48px;
