@@ -1,21 +1,47 @@
-import {FC, useState} from "react";
+import {FC, ReactNode} from "react";
 import styled from "styled-components";
 import {PageLayout} from "../style/PageLayout";
 import {Button} from "../component/atom/Button";
 import {useAuth} from "../context/AuthContext";
 import type {SignUpReq} from "../types/auth";
-import {InputLabel} from "../component/molecules/InputLabel";
-import {InputCheckIcon} from "../InputCheckIcon";
+import type {UseFunnelOptions} from "@use-funnel/react-router-dom";
+import {useFunnel} from "@use-funnel/react-router-dom";
+import {SignUpInitialStep} from "../component/templates/SignUpInitialStep";
 
+type InitialStepState = { id?: string, email?: string, password?: string, phoneNumber?: string };
+type IdStepState = { id?: string, email?: string, password?: string, phoneNumber?: string };
+type EmailStepState = { id: string, email?: string, password?: string, phoneNumber?: string };
+type PasswordStepState = { id: string, email: string, password?: string, phoneNumber?: string };
+type CertfyStepState = { id: string, email: string, password: string, phoneNumber?: string };
+type ComplateStepState = { id: string, email: string, password: string, phoneNumber: string };
+
+type Steps = {
+    init: InitialStepState;
+    id: IdStepState;
+    email: EmailStepState;
+    password: PasswordStepState;
+    certify: CertfyStepState;
+    complete: ComplateStepState
+}
 
 export type SignUpPageProps = {}
 
 const SignupPageStyle = styled.div`
+
 `
 
 export const SignUpPage: FC<SignUpPageProps> = () => {
     const {signUp, login, checkUserExists} = useAuth();
-    const [name, setName] = useState("")
+
+    const funnelOptions: UseFunnelOptions<Steps> = {
+        id: 'sign-up-app',
+        initial: {
+            step: 'init',
+            context: {} as Steps["init"],
+        },
+    }
+
+    const {step, history} = useFunnel<Steps>(funnelOptions)
 
     const onSubmit = async () => {
         try {
@@ -46,16 +72,22 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
 
     }
 
+    let stepTemplate: ReactNode
+
+    if (step === 'init') {
+        stepTemplate = (
+            <SignUpInitialStep
+                onNext={() => history.push("id", {})}
+                onPrev={() => {}}
+                onClose={() => {}}
+            />
+        );
+    }
+
     return (
         <PageLayout>
             <SignupPageStyle>
-                <Button onClick={() => onSubmit()}>회원가입</Button>
-                <Button onClick={() => onLogin()}>로그인</Button>
-                <Button onClick={() => {
-                    checkUserExists("ckstmznf11").then(res => {
-                        console.log(res)
-                    })
-                }}>클릭</Button>
+                {stepTemplate}
             </SignupPageStyle>
         </PageLayout>
     );
