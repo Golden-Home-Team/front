@@ -1,4 +1,4 @@
-import {FC, useState} from "react";
+import {ChangeEvent, FC, useState} from "react";
 import styled from "styled-components";
 import {MobileLayout} from "../../MobileLayout";
 import {BaseAppBar} from "../atom/BaseAppBar";
@@ -32,16 +32,50 @@ const HighLight = styled.span`
   font-weight: 700;
 `
 
-export const SignUpEmailStep: FC<SignUpEmailStepProps> = ({onNext, onClose}) => {
+const Select = styled.select`
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  &:focus {
+    border: none;
+  }
+`
+
+const Option = styled.option`
+  font-size: 13px;
+  font-weight: 600;
+`
+
+export const SignUpEmailStep: FC<SignUpEmailStepProps> = ({onNext, onPrev, onClose}) => {
     const [email, setEmail] = useState("")
+    const [domain, setDomain] = useState<string | null>(null);
+
+    const onEmailInput = (value: string) => {
+        setEmail(value);
+    }
+
+    const onDomainChange = (event: ChangeEvent<HTMLSelectElement>) => {
+        const value = event.target.value;
+        setDomain(value)
+    };
+
+    const onNextClick = () => {
+        if(domain == "self") {
+            onNext(email);
+            return
+        }
+
+        onNext(`${email}@${domain}`);
+    }
 
     return (
         <MobileLayout
-            top={<CloseAppBar onXClick={onClose}/>}
+            top={<BackCloseAppBar onPrevClick={onPrev} onXClick={onClose}/>}
             bottom={(
                 <Button
                     $isFullWidth
-                    onClick={() => onNext(email)}
+                    onClick={() => onNextClick()}
                 >다음으로
                 </Button>
             )}
@@ -60,6 +94,15 @@ export const SignUpEmailStep: FC<SignUpEmailStepProps> = ({onNext, onClose}) => 
                 label={"이메일"}
                 placeholder={"이메일 입력"}
                 isFullWidth
+                rightAddon={(
+                    <Select value={domain} onChange={onDomainChange}>
+                        <Option disabled={true} selected>이메일 선택</Option>
+                        <Option value={"self"}>직접 입력</Option>
+                        <Option value={"naver.com"}>naver.com</Option>
+                        <Option value={"kakao.com"}>kakao.com</Option>
+                        <Option value={"gmail.com"}>gmail.com</Option>
+                    </Select>
+                )}
             />
 
         </MobileLayout>
