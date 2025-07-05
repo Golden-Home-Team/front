@@ -7,6 +7,7 @@ import type {SignUpReq} from "../types/auth";
 import type {UseFunnelOptions} from "@use-funnel/react-router-dom";
 import {useFunnel} from "@use-funnel/react-router-dom";
 import {SignUpInitialStep} from "../component/templates/SignUpInitialStep";
+import {SignUpIdStep} from "../component/templates/SignUpIdStep";
 
 type InitialStepState = { id?: string, email?: string, password?: string, phoneNumber?: string };
 type IdStepState = { id?: string, email?: string, password?: string, phoneNumber?: string };
@@ -78,6 +79,15 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
         stepTemplate = (
             <SignUpInitialStep
                 onNext={() => history.push("id", {})}
+                onClose={() => {}}
+            />
+        );
+    }
+    else if( step === 'id') {
+        stepTemplate = (
+            <SignUpIdStep
+                onNext={(id) => history.push("email", {id})}
+                onPrev={() => {}}
                 onClose={() => {}}
             />
         );
