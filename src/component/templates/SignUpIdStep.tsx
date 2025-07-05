@@ -21,14 +21,14 @@ const SignUpIdStepStyle = styled.div`
 `
 
 const Title = styled.h1`
-  font-weight: 700;
+  color: #9B9B9B;
+  font-weight: 500;
   font-size: 24px;
 `
 
-const Message = styled.p`
-  color: #666666;
-  font-weight: 500;
-  font-size: 14px;
+const HighLight = styled.span`
+  color: ${p => p.theme.color.GoldenHome};
+  font-weight: 700;
 `
 
 export const SignUpIdStep: FC<SignUpIdStepProps> = ({onNext, onClose}) => {
@@ -41,6 +41,10 @@ export const SignUpIdStep: FC<SignUpIdStepProps> = ({onNext, onClose}) => {
         //todo id에 추가 제약조건 적용할것
 
         setId(value);
+        if(value.length == 0){
+            setIsIdValid(false);
+            return
+        }
         try {
             const checkRed = await checkUserExists(value);
             setIsIdValid(checkRed);
@@ -62,7 +66,7 @@ export const SignUpIdStep: FC<SignUpIdStepProps> = ({onNext, onClose}) => {
             isBottomPadding
         >
             <Title>
-                아이디를 <br/>
+                <HighLight>아이디</HighLight>를 <br/>
                 입력해주세요
             </Title>
 
