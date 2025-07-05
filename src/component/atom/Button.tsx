@@ -13,8 +13,8 @@ export type ButtonProps = {
 const Color = css`
   ${p => {
     let {
-      background = p.theme.color.HeechanBlue,
-      color = p.theme.color.Gray0
+      background = p.theme.color.GoldenHome,
+      color = "#FFFFFF"
     } = p;
 
     if (Object.hasOwn(p.theme.color, background)) {
@@ -45,19 +45,19 @@ const Color = css`
 
 const ButtonStyle = styled.button<ButtonProps>`
   ${Color};
+  font-size: 14px;
 
+  padding: 10px 20px;
+  border: none;
+  border-radius: ${p => p.theme.size.borderRadius};
+
+  cursor: pointer;
   user-select: none;
 
   &:disabled {
     cursor: not-allowed;
     opacity: 0.5;
   }
-
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
 `
 
 export const Button: FC<ButtonProps>

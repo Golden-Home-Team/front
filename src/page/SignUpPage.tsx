@@ -4,6 +4,9 @@ import {PageLayout} from "../style/PageLayout";
 import {Button} from "../component/atom/Button";
 import {useAuth} from "../context/AuthContext";
 import type {SignUpReq} from "../types/auth";
+import {InputLabel} from "../component/molecules/InputLabel";
+import {InputCheckIcon} from "../InputCheckIcon";
+
 
 export type SignUpPageProps = {}
 
@@ -12,10 +15,11 @@ const SignupPageStyle = styled.div`
 
 export const SignUpPage: FC<SignUpPageProps> = () => {
     const {signUp, login, checkUserExists} = useAuth();
+    const [name, setName] = useState("")
 
     const onSubmit = async () => {
         try {
-            const req : SignUpReq = {
+            const req: SignUpReq = {
                 email: "ckstmznf@naver.com",
                 loginId: "ckstmznf",
                 password: "qwer1234",

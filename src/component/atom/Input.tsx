@@ -1,27 +1,54 @@
-import {ComponentPropsWithRef, FC} from "react";
+import {ComponentPropsWithRef, FC, ReactNode} from "react";
 import styled from "styled-components";
 
 export type InputProps = {
     value: string;
     onChange: (value: string) => void;
+    rightAddon?: ReactNode;
 } & ComponentPropsWithRef<'input'>
 
+const Container = styled.div`
+  display: inline-block;
+
+  position: relative;
+`
+
 const InputStyle = styled.input`
+  width: 100%;
   font-size: 13px;
 
-  box-shadow: 0 0 0 1px ${p => p.theme.color.Gray3};
+  box-shadow: 0 0 0 1px #A7A7A7;
   border: none;
   border-radius: 5px;
   outline: none;
   padding: 10px;
+
+  &::placeholder {
+    color: #A7A7A7;
+  }
 `
 
-export const Input: FC<InputProps> = ({value, onChange, ...rest}) => {
+const RightAddonStyle = styled.div`
+  display: flex;
+  
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  
+  transform: translateY(-50%)
+`
+
+export const Input: FC<InputProps> = ({value, onChange, rightAddon, ...rest}) => {
     return (
-        <InputStyle
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            {...rest}
-        />
+        <Container>
+            <InputStyle
+                value={value}
+                onChange={(e) => onChange(e.target.value)}
+                {...rest}
+            />
+            <RightAddonStyle>
+                {rightAddon && rightAddon}
+            </RightAddonStyle>
+        </Container>
     );
 };

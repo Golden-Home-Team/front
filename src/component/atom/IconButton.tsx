@@ -3,9 +3,10 @@ import {color as Color} from "../../style/theme.js";
 import {FC, ReactNode} from "react";
 
 type IconButtonProps = {
-    color: string,
-    size: number,
-    background: string,
+    color?: string,
+    size?: number,
+    background?: string,
+    onClick: () => void,
     children: ReactNode
 }
 
