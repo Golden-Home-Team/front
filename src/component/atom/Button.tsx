@@ -8,6 +8,7 @@ export type ButtonProps = {
     color?: string;
     background?: string;
     isDisabled?: boolean;
+    $isFullWidth?: boolean;
 } & ComponentPropsWithRef<'button'>;
 
 const Color = css`
@@ -45,6 +46,7 @@ const Color = css`
 
 const ButtonStyle = styled.button<ButtonProps>`
   ${Color};
+  width : ${p => p.$isFullWidth ? '100%' : 'auto'};
   font-size: 14px;
 
   padding: 10px 20px;
