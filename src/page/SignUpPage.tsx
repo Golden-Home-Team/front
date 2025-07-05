@@ -78,7 +78,6 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
         stepTemplate = (
             <SignUpInitialStep
                 onNext={() => history.push("id", {})}
-                onPrev={() => {}}
                 onClose={() => {}}
             />
         );
