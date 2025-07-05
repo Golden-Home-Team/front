@@ -24,6 +24,6 @@ export const BackCloseAppBar: FC<BackCloseAppBarProps> = ({onPrevClick, onXClick
                     <BsXLg/>
                 </IconButton>
             )}
-            center={<span>Title</span>}></BaseAppBar>
+        />
     );
 };

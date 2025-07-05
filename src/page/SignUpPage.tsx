@@ -43,7 +43,7 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
         },
     }
 
-    const {step, history} = useFunnel<Steps>(funnelOptions)
+    const {step, history, context} = useFunnel<Steps>(funnelOptions)
 
     const onSubmit = async () => {
         try {
@@ -101,6 +101,14 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
                 onClose={() => {}}
             />
         );
+    }
+    else if( step === 'password') {
+        stepTemplate = (
+            <div>
+                {context.email} <br/>
+                {context.id}
+            </div>
+        )
     }
 
     return (

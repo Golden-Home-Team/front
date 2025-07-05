@@ -31,7 +31,7 @@ const HighLight = styled.span`
   font-weight: 700;
 `
 
-export const SignUpIdStep: FC<SignUpIdStepProps> = ({onNext, onClose}) => {
+export const SignUpIdStep: FC<SignUpIdStepProps> = ({onNext, onPrev, onClose}) => {
     const {checkUserExists} = useAuth();
     const [id, setId] = useState("")
     const [isIdValid, setIsIdValid] = useState(false);
@@ -55,7 +55,7 @@ export const SignUpIdStep: FC<SignUpIdStepProps> = ({onNext, onClose}) => {
 
     return (
         <MobileLayout
-            top={<CloseAppBar onXClick={onClose}/>}
+            top={<BackCloseAppBar onPrevClick={onPrev} onXClick={onClose}/>}
             bottom={(
                 <Button
                     onClick={() => onNext(id)}
