@@ -58,7 +58,7 @@ export const SignUpIdStep: FC<SignUpIdStepProps> = ({onNext, onClose}) => {
             top={<CloseAppBar onXClick={onClose}/>}
             bottom={(
                 <Button
-                    onClick={() => onNext("")}
+                    onClick={() => onNext(id)}
                     isDisabled={!isIdValid}
                     $isFullWidth>다음으로
                 </Button>
