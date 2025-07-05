@@ -2,8 +2,9 @@ import {FC} from "react";
 import styled from "styled-components";
 import {PageLayout} from "../style/PageLayout";
 import {MobileLayout} from "../MobileLayout";
-import {IconButton} from "../component/atom/IconButton";
+import {BaseAppBar} from "../component/atom/BaseAppBar";
 import {BiCheck} from "react-icons/bi";
+
 
 export type MainPageProps = {}
 
@@ -14,7 +15,13 @@ export const MainPage: FC<MainPageProps> = () => {
     return (
         <PageLayout>
             <MobileLayout
-                top={<h1>Hello</h1>}
+                top={
+                    <BaseAppBar
+                        left={<BiCheck/>}
+                        center={<h1>Title</h1>}
+                        right={<h1>Right</h1>}
+                    />
+                }
                 bottom={<h1>World</h1>}
             >
                 <MainPageStyle>
