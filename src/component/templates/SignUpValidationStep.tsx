@@ -1,4 +1,4 @@
-import {FC, useState} from "react";
+import {ChangeEvent, FC, useState} from "react";
 import styled from "styled-components";
 import {MobileLayout} from "../../MobileLayout";
 import {BackCloseAppBar} from "../molecules/BackCloseAppBar";
@@ -7,6 +7,8 @@ import {Space} from "../../style/Space";
 import {InputLabel} from "../molecules/InputLabel";
 import {InputCheckIcon} from "../../InputCheckIcon";
 import {getPasswordValidationResult} from "../../utils/validation";
+import {LabelWrap} from "../atom/LabelWrap";
+import {Input} from "../atom/Input";
 
 export type SignUpValidationStepProps = {
     onPrev: () => void;
@@ -30,13 +32,12 @@ const HighLight = styled.span`
 `
 
 const Select = styled.select`
-  background-color: transparent;
-  border: none;
+  text-align: center;
+  
   outline: none;
-
-  &:focus {
-    border: none;
-  }
+  background-color: #fff;
+  border: 1px solid #A7A7A7;
+  border-radius: ${p => p.theme.size.borderRadius};
 `
 
 const Option = styled.option`
@@ -44,14 +45,29 @@ const Option = styled.option`
   font-weight: 600;
 `
 
+const PhoneInputWrap = styled.div`
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr auto;
+  gap: 8px;
+  align-items: stretch;
+`
+
 
 export const SignUpValidationStep: FC<SignUpValidationStepProps> = ({onNext, onPrev, onClose}) => {
-    const [password, setPassword] = useState("")
-    const [passwordConfirm, setPasswordConfirm] = useState("")
+    const [phoneNumberFirst, setPhoneNumberFirst] = useState("010");
+    const [phoneNumberSecond, setPhoneNumberSecond] = useState("");
+    const [phoneNumberThird, setPhoneNumberThird] = useState("");
+    const [authCode, setAuthCode] = useState("");
 
-    const {message : passwordValidMessage, isValid : isPasswordValid} = getPasswordValidationResult(password);
-    const isPasswordConfirmValid = password == passwordConfirm && password.length > 0;
+    const onPhoneNumberChange = (e : ChangeEvent) => {
+        const value = (e.target as HTMLSelectElement).value;
+        setPhoneNumberFirst(value);
+    }
 
+    const onSendAuthCode = () => {
+        const phoneNumber = `${phoneNumberFirst}${phoneNumberSecond}${phoneNumberThird}`;
+        console.log(`인증번호를 ${phoneNumber}로 전송했습니다.`);
+    }
 
     return (
         <MobileLayout
@@ -59,8 +75,7 @@ export const SignUpValidationStep: FC<SignUpValidationStepProps> = ({onNext, onP
             bottom={(
                 <Button
                     $isFullWidth
-                    onClick={() => onNext(password)}
-                    isDisabled={!(isPasswordValid && isPasswordConfirmValid)}
+                    onClick={() => onNext("")}
                 >다음으로
                 </Button>
             )}
@@ -73,39 +88,46 @@ export const SignUpValidationStep: FC<SignUpValidationStepProps> = ({onNext, onP
 
             <Space v={40}/>
 
+            <LabelWrap label={"휴대 전화"}>
+                <PhoneInputWrap>
+                    <Select onChange={onPhoneNumberChange}>
+                        <Option value="010" >010</Option>
+                        <Option value="011">011</Option>
+                        <Option value="016">016</Option>
+                        <Option value="017">017</Option>
+                        <Option value="018">018</Option>
+                        <Option value="019">019</Option>
+                    </Select>
+                    <Input
+                        value={phoneNumberSecond}
+                        onChange={setPhoneNumberSecond}
+                        maxLength={4}
+                    />
+                    <Input
+                        value={phoneNumberThird}
+                        onChange={setPhoneNumberThird}
+                        maxLength={4}
+                    />
+                    <Button onClick={onSendAuthCode}>인증번호</Button>
+                </PhoneInputWrap>
+            </LabelWrap>
+
+            <Space v={40}/>
+
             <InputLabel
-                value={password}
-                onChange={setPassword}
-                placeholder={"비밀번호 입력"}
-                label={"비밀번호"}
-                type={"password"}
-                bottomMessage={passwordValidMessage}
-                isFullWidth
-                isShowBottomMessageSpace
+                label={"인증번호"}
+                value={authCode}
+                onChange={setAuthCode}
+                placeholder={"인증번호 6자리 숫자 입력"}
+                maxLength={6}
                 rightAddon={(
                     <InputCheckIcon
-                        isSuccess={isPasswordValid}
+                        isSuccess={false}
                     />
                 )}
-            />
-
-            <Space v={26} />
-
-            <InputLabel
-                value={passwordConfirm}
-                onChange={setPasswordConfirm}
-                placeholder={"비밀번호 입력"}
-                label={"비밀번호 확인"}
-                type={"password"}
-                bottomMessage={"비밀번호를 한번 더 입력해주세요."}
                 isFullWidth
-                isShowBottomMessageSpace
-                rightAddon={(
-                    <InputCheckIcon
-                        isSuccess={isPasswordConfirmValid}
-                    />
-                )}
             />
+
         </MobileLayout>
     );
 };

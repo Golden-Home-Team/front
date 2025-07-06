@@ -19,7 +19,7 @@ const InputStyle = styled.input`
 
   box-shadow: 0 0 0 1px #A7A7A7;
   border: none;
-  border-radius: 5px;
+  border-radius: ${p => p.theme.size.borderRadius};
   outline: none;
   padding: 10px;
 
