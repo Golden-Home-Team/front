@@ -6,7 +6,6 @@ import {Button} from "../atom/Button";
 import {Space} from "../../style/Space";
 import {InputLabel} from "../molecules/InputLabel";
 import {InputCheckIcon} from "../../InputCheckIcon";
-import {getPasswordValidationResult} from "../../utils/validation";
 import {LabelWrap} from "../atom/LabelWrap";
 import {Input} from "../atom/Input";
 
@@ -15,10 +14,6 @@ export type SignUpValidationStepProps = {
     onNext: (phoneNumber: string) => void;
     onClose: () => void;
 }
-
-const SignUpValidationStepStyle = styled.div`
-
-`
 
 const Title = styled.h1`
   color: #9B9B9B;
@@ -54,18 +49,19 @@ const PhoneInputWrap = styled.div`
 
 
 export const SignUpValidationStep: FC<SignUpValidationStepProps> = ({onNext, onPrev, onClose}) => {
-    const [phoneNumberFirst, setPhoneNumberFirst] = useState("010");
-    const [phoneNumberSecond, setPhoneNumberSecond] = useState("");
-    const [phoneNumberThird, setPhoneNumberThird] = useState("");
+    const [phone1, setPhone1] = useState("010");
+    const [phone2, setPhone2] = useState("");
+    const [phone3, setPhone3] = useState("");
     const [authCode, setAuthCode] = useState("");
+
+    const phoneNumber = `${phone1}${phone2}${phone3}`;
 
     const onPhoneNumberChange = (e : ChangeEvent) => {
         const value = (e.target as HTMLSelectElement).value;
-        setPhoneNumberFirst(value);
+        setPhone1(value);
     }
 
     const onSendAuthCode = () => {
-        const phoneNumber = `${phoneNumberFirst}${phoneNumberSecond}${phoneNumberThird}`;
         console.log(`인증번호를 ${phoneNumber}로 전송했습니다.`);
     }
 
@@ -75,7 +71,7 @@ export const SignUpValidationStep: FC<SignUpValidationStepProps> = ({onNext, onP
             bottom={(
                 <Button
                     $isFullWidth
-                    onClick={() => onNext("")}
+                    onClick={() => onNext(phoneNumber)}
                 >다음으로
                 </Button>
             )}
@@ -99,13 +95,13 @@ export const SignUpValidationStep: FC<SignUpValidationStepProps> = ({onNext, onP
                         <Option value="019">019</Option>
                     </Select>
                     <Input
-                        value={phoneNumberSecond}
-                        onChange={setPhoneNumberSecond}
+                        value={phone2}
+                        onChange={setPhone2}
                         maxLength={4}
                     />
                     <Input
-                        value={phoneNumberThird}
-                        onChange={setPhoneNumberThird}
+                        value={phone3}
+                        onChange={setPhone3}
                         maxLength={4}
                     />
                     <Button onClick={onSendAuthCode}>인증번호</Button>

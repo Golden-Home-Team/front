@@ -14,9 +14,6 @@ export type SignUpPasswordStepProps = {
     onClose: () => void;
 }
 
-const SignUpPasswordStepStyle = styled.div`
-
-`
 
 const Title = styled.h1`
   color: #9B9B9B;
@@ -28,22 +25,6 @@ const HighLight = styled.span`
   color: ${p => p.theme.color.GoldenHome};
   font-weight: 700;
 `
-
-const Select = styled.select`
-  background-color: transparent;
-  border: none;
-  outline: none;
-
-  &:focus {
-    border: none;
-  }
-`
-
-const Option = styled.option`
-  font-size: 13px;
-  font-weight: 600;
-`
-
 
 export const SignUpPasswordStep: FC<SignUpPasswordStepProps> = ({onNext, onPrev, onClose}) => {
     const [password, setPassword] = useState("")
