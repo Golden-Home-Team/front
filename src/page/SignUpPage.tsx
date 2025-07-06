@@ -10,6 +10,7 @@ import {SignUpInitialStep} from "../component/templates/SignUpInitialStep";
 import {SignUpIdStep} from "../component/templates/SignUpIdStep";
 import {SignUpEmailStep} from "../component/templates/SignUpEmailStep";
 import {SignUpPasswordStep} from "../component/templates/SignUpPasswordStep";
+import {SignUpValidationStep} from "../component/templates/SignUpValidationStep";
 
 type InitialStepState = { id?: string, email?: string, password?: string, phoneNumber?: string };
 type IdStepState = { id?: string, email?: string, password?: string, phoneNumber?: string };
@@ -109,17 +110,21 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
         stepTemplate = (
             <SignUpPasswordStep
                 onNext={(password) => history.push("validation", {password})}
-                onPrev={() => {}}
-                onClose={() => {}}
+                onPrev={() => {
+                }}
+                onClose={() => {
+                }}
             />
         )
-    } else if( step === 'validation') {
+    } else if (step === 'validation') {
         stepTemplate = (
-            <div>
-                <h2>인증 단계</h2>
-                <Button onClick={onSubmit}>회원가입</Button>
-                <Button onClick={onLogin}>로그인</Button>
-            </div>
+            <SignUpValidationStep
+                onNext={(phoneNumber) => history.push("validation", {phoneNumber})}
+                onPrev={() => {
+                }}
+                onClose={() => {
+                }}
+            />
         )
 
     }
