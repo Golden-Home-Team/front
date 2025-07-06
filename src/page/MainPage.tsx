@@ -21,7 +21,7 @@ export const MainPage: FC<MainPageProps> = () => {
                 bottom={<div>Bottom</div>}
             >
                 <Link to={RoutePath.signUp}>
-                    <Button>회원가입</Button>
+                    <Button onClick={() => {}}>회원가입</Button>
                 </Link>
             </MobileLayout>
         </PageLayout>

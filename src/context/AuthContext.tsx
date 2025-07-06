@@ -4,8 +4,8 @@ import type {LoginReq, LoginRes, SignUpReq} from "../types/auth";
 import type {ApiResult} from "../types/api";
 
 interface AuthContextProps {
-    signUp: (SignUpReq) => Promise<ApiResult>;
-    login: (LoginReq) => Promise<LoginRes>;
+    signUp: (req: SignUpReq) => Promise<ApiResult>;
+    login: (req: LoginReq) => Promise<LoginRes>;
     checkUserExists: (id : SignUpReq["loginId"]) => Promise<Boolean>;
 }
 
