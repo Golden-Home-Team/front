@@ -12,6 +12,7 @@ import {SignUpEmailStep} from "../component/templates/SignUpEmailStep";
 import {SignUpPasswordStep} from "../component/templates/SignUpPasswordStep";
 import {SignUpValidationStep} from "../component/templates/SignUpValidationStep";
 import {SignUpCompleteStep} from "../component/templates/SignUpCompleteStep";
+import {useNavigate} from "react-router-dom";
 
 type InitialStepState = { loginId?: string, email?: string, password?: string, phoneNumber?: string };
 type IdStepState = { loginId?: string, email?: string, password?: string, phoneNumber?: string };
@@ -36,7 +37,8 @@ const SignupPageStyle = styled.div`
 `
 
 export const SignUpPage: FC<SignUpPageProps> = () => {
-    const {signUp, login, checkUserExists} = useAuth();
+    const navigation = useNavigate()
+    const {signUp} = useAuth();
 
     const funnelOptions: UseFunnelOptions<Steps> = {
         id: 'sign-up-app',
@@ -48,67 +50,37 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
 
     const {step, history, context} = useFunnel<Steps>(funnelOptions)
 
-    // const onSignUp = async (req : SignUpReq) => {
-    //     try {
-    //         const res = signUp(req)
-    //         history.push("complete", {})
-    //     } catch (e) {
-    //         alert("실패..")
-    //     }
-    // }
-
-    const onLogin = async () => {
-        try {
-            const req = {
-                loginId: "ckstmznf",
-                password: "qwer1234"
-            }
-            const res = await login(req)
-            console.log(res)
-        } catch (e) {
-            alert("로그인 실패")
-        }
-
-    }
-
     let stepTemplate: ReactNode
 
     if (step === 'init') {
         stepTemplate = (
             <SignUpInitialStep
                 onNext={() => history.push("id", {})}
-                onClose={() => {
-                }}
+                onClose={() => navigation(-1, {replace: true})}
             />
         );
     } else if (step === 'id') {
         stepTemplate = (
             <SignUpIdStep
                 onNext={(loginId) => history.push("email", {loginId})}
-                onPrev={() => {
-                }}
-                onClose={() => {
-                }}
+                onPrev={() => history.back()}
+                onClose={() => navigation(-1, {replace: true})}
             />
         );
     } else if (step === 'email') {
         stepTemplate = (
             <SignUpEmailStep
                 onNext={(email) => history.push("password", {email})}
-                onPrev={() => {
-                }}
-                onClose={() => {
-                }}
+                onPrev={() => history.back()}
+                onClose={() => navigation(-1, {replace: true})}
             />
         );
     } else if (step === 'password') {
         stepTemplate = (
             <SignUpPasswordStep
                 onNext={(password) => history.push("validation", {password})}
-                onPrev={() => {
-                }}
-                onClose={() => {
-                }}
+                onPrev={() => history.back()}
+                onClose={() => navigation(-1, {replace: true})}
             />
         )
     } else if (step === 'validation') {
@@ -123,10 +95,8 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
                     const res = await signUp(req)
                     history.push("complete", {phoneNumber})
                 }}
-                onPrev={() => {
-                }}
-                onClose={() => {
-                }}
+                onPrev={() => history.back()}
+                onClose={() => navigation(-1, {replace: true})}
             />
         )
     } else if (step === 'complete') {
