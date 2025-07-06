@@ -34,7 +34,7 @@ export const SignUpCompleteStep: FC<SignUpComplateStepProps> = ({}) => {
     const navigate = useNavigate()
 
     const onGoHomeClick = () => {
-        navigate(RoutePath.main)
+        navigate(RoutePath.main, {replace: true})
     }
     return (
         <PageLayout>

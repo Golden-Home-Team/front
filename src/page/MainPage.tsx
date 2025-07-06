@@ -3,6 +3,9 @@ import styled from "styled-components";
 import {PageLayout} from "../style/PageLayout";
 import {MobileLayout} from "../MobileLayout";
 import {BackCloseAppBar} from "../component/molecules/BackCloseAppBar";
+import {Button} from "../component/atom/Button";
+import {Link} from "react-router-dom";
+import {RoutePath} from "../RoutePath";
 
 
 export type MainPageProps = {}
@@ -14,17 +17,12 @@ export const MainPage: FC<MainPageProps> = () => {
     return (
         <PageLayout>
             <MobileLayout
-                top={
-                    <BackCloseAppBar
-                        onPrevClick={() => {
-                        }}
-                        onXClick={() => {
-                        }}
-                    />}
-                bottom={<h1>World</h1>}
+                top={<div>헤더</div>}
+                bottom={<div>Bottom</div>}
             >
-                <MainPageStyle>
-                </MainPageStyle>
+                <Link to={RoutePath.signUp}>
+                    <Button>회원가입</Button>
+                </Link>
             </MobileLayout>
         </PageLayout>
     );
