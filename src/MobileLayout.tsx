@@ -5,6 +5,7 @@ export type MobileLayoutProps = {
     top: ReactNode;
     bottom: ReactNode;
     children: ReactNode;
+    isBottomPadding?: boolean;
 }
 
 const MobileLayoutStyle = styled.div`
@@ -17,19 +18,23 @@ const TopWrapper = styled.div``
 
 const BodyWrapper = styled.div`
   flex: 1;
+  padding: 16px;
 `
 
-const BottomWrapper = styled.div`
+const BottomWrapper = styled.div<{ isBottomPadding?: boolean }>`
+  padding: ${p => p.isBottomPadding ? '0 16px 52px 16px' : '0px'};
 `
 
-export const MobileLayout: FC<MobileLayoutProps> = ({top, bottom, children}) => {
+export const MobileLayout: FC<MobileLayoutProps> = ({top, bottom, children, isBottomPadding}) => {
     return (
         <MobileLayoutStyle>
             <TopWrapper>{top}</TopWrapper>
             <BodyWrapper>
                 {children}
             </BodyWrapper>
-            <BottomWrapper>{bottom}</BottomWrapper>
+            <BottomWrapper
+                isBottomPadding={isBottomPadding}
+            >{bottom}</BottomWrapper>
         </MobileLayoutStyle>
     );
 };

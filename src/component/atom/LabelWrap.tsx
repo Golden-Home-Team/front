@@ -5,9 +5,11 @@ export type LabelWrapProps = {
     label: string;
     bottomMessage?: ReactNode;
     isShowBottomMessageSpace?: boolean;
+    isFullWidth?: boolean;
     children: ReactNode;
 }
-const LabelWrapStyle = styled.label`
+const LabelWrapStyle = styled.label<{$isFullWidth?: boolean}>`
+  width: ${p => p.$isFullWidth ? '100%' : 'auto'};
   display: inline-block;
 `
 const Label = styled.div`
@@ -29,9 +31,9 @@ const Bottom = styled.div<{$isShow : boolean}>`
   font-weight: 400;
 `
 
-export const LabelWrap: FC<LabelWrapProps> = ({label, bottomMessage, isShowBottomMessageSpace, children}) => {
+export const LabelWrap: FC<LabelWrapProps> = ({label, bottomMessage, isShowBottomMessageSpace, children, isFullWidth}) => {
     return (
-        <LabelWrapStyle>
+        <LabelWrapStyle $isFullWidth={isFullWidth}>
             <Label>{label}</Label>
             <InputWrap>
                 {children}
