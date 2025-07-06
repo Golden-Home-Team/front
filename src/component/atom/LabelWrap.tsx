@@ -31,7 +31,7 @@ const Bottom = styled.div<{$isShow : boolean}>`
   font-weight: 400;
 `
 
-export const LabelWrap: FC<LabelWrapProps> = ({label, bottomMessage, isShowBottomMessageSpace, children, isFullWidth}) => {
+export const LabelWrap: FC<LabelWrapProps> = ({label, bottomMessage, isShowBottomMessageSpace=false, children, isFullWidth}) => {
     return (
         <LabelWrapStyle $isFullWidth={isFullWidth}>
             <Label>{label}</Label>

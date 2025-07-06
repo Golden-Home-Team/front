@@ -12,7 +12,7 @@ export type ButtonProps = {
     $isFullWidth?: boolean;
 } & ComponentPropsWithRef<'button'>;
 
-const Color = css`
+const Color = css<ButtonProps>`
   ${p => {
     let {
       background = p.theme.color.GoldenHome,
@@ -53,7 +53,6 @@ const ButtonStyle = styled.button<ButtonProps>`
   padding: 10px 20px;
   border: none;
   border-radius: ${p => p.borderRadius ?? p.theme.size.borderRadius};
-  
   display: flex;
   align-items: center;
   justify-content: center;
