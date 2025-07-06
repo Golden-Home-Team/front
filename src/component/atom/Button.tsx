@@ -8,6 +8,7 @@ export type ButtonProps = {
     color?: string;
     background?: string;
     isDisabled?: boolean;
+    borderRadius?: string;
     $isFullWidth?: boolean;
 } & ComponentPropsWithRef<'button'>;
 
@@ -46,12 +47,16 @@ const Color = css`
 
 const ButtonStyle = styled.button<ButtonProps>`
   ${Color};
-  width : ${p => p.$isFullWidth ? '100%' : 'auto'};
+  width: ${p => p.$isFullWidth ? '100%' : 'auto'};
   font-size: 14px;
 
   padding: 10px 20px;
   border: none;
-  border-radius: ${p => p.theme.size.borderRadius};
+  border-radius: ${p => p.borderRadius ?? p.theme.size.borderRadius};
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   cursor: pointer;
   user-select: none;

@@ -11,6 +11,7 @@ import {SignUpIdStep} from "../component/templates/SignUpIdStep";
 import {SignUpEmailStep} from "../component/templates/SignUpEmailStep";
 import {SignUpPasswordStep} from "../component/templates/SignUpPasswordStep";
 import {SignUpValidationStep} from "../component/templates/SignUpValidationStep";
+import {SignUpCompleteStep} from "../component/templates/SignUpCompleteStep";
 
 type InitialStepState = { loginId?: string, email?: string, password?: string, phoneNumber?: string };
 type IdStepState = { loginId?: string, email?: string, password?: string, phoneNumber?: string };
@@ -130,10 +131,7 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
         )
     } else if (step === 'complete') {
         stepTemplate = (
-            <div>
-                <h1>회원가입 완료</h1>
-                <Button onClick={onLogin}>로그인</Button>
-            </div>
+            <SignUpCompleteStep/>
         );
     }
 
