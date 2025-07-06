@@ -12,12 +12,12 @@ import {SignUpEmailStep} from "../component/templates/SignUpEmailStep";
 import {SignUpPasswordStep} from "../component/templates/SignUpPasswordStep";
 import {SignUpValidationStep} from "../component/templates/SignUpValidationStep";
 
-type InitialStepState = { id?: string, email?: string, password?: string, phoneNumber?: string };
-type IdStepState = { id?: string, email?: string, password?: string, phoneNumber?: string };
-type EmailStepState = { id: string, email?: string, password?: string, phoneNumber?: string };
-type PasswordStepState = { id: string, email: string, password?: string, phoneNumber?: string };
-type ValidationStepState = { id: string, email: string, password: string, phoneNumber?: string };
-type ComplateStepState = { id: string, email: string, password: string, phoneNumber: string };
+type InitialStepState = { loginId?: string, email?: string, password?: string, phoneNumber?: string };
+type IdStepState = { loginId?: string, email?: string, password?: string, phoneNumber?: string };
+type EmailStepState = { loginId: string, email?: string, password?: string, phoneNumber?: string };
+type PasswordStepState = { loginId: string, email: string, password?: string, phoneNumber?: string };
+type ValidationStepState = { loginId: string, email: string, password: string, phoneNumber?: string };
+type ComplateStepState = { loginId: string, email: string, password: string, phoneNumber: string };
 
 type Steps = {
     init: InitialStepState;
@@ -83,7 +83,7 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
     } else if (step === 'id') {
         stepTemplate = (
             <SignUpIdStep
-                onNext={(id) => history.push("email", {id})}
+                onNext={(loginId) => history.push("email", {loginId})}
                 onPrev={() => {
                 }}
                 onClose={() => {
@@ -115,7 +115,7 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
             <SignUpValidationStep
                 onNext={async (phoneNumber) => {
                     const req : SignUpReq = {
-                        ...(context),
+                        ...(context as ValidationStepState),
                         phoneNumber
                     }
 
