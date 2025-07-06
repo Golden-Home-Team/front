@@ -47,20 +47,14 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
 
     const {step, history, context} = useFunnel<Steps>(funnelOptions)
 
-    const onSubmit = async () => {
-        try {
-            const req: SignUpReq = {
-                email: "ckstmznf@naver.com",
-                loginId: "ckstmznf",
-                password: "qwer1234",
-                phoneNumber: "01050139850"
-            }
-            const res = signUp(req)
-            console.log(res)
-        } catch (e) {
-            alert("실패..")
-        }
-    }
+    // const onSignUp = async (req : SignUpReq) => {
+    //     try {
+    //         const res = signUp(req)
+    //         history.push("complete", {})
+    //     } catch (e) {
+    //         alert("실패..")
+    //     }
+    // }
 
     const onLogin = async () => {
         try {
@@ -119,14 +113,28 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
     } else if (step === 'validation') {
         stepTemplate = (
             <SignUpValidationStep
-                onNext={(phoneNumber) => history.push("validation", {phoneNumber})}
+                onNext={async (phoneNumber) => {
+                    const req : SignUpReq = {
+                        ...(context),
+                        phoneNumber
+                    }
+
+                    const res = await signUp(req)
+                    history.push("complete", {phoneNumber})
+                }}
                 onPrev={() => {
                 }}
                 onClose={() => {
                 }}
             />
         )
-
+    } else if (step === 'complete') {
+        stepTemplate = (
+            <div>
+                <h1>회원가입 완료</h1>
+                <Button onClick={onLogin}>로그인</Button>
+            </div>
+        );
     }
 
     return (
