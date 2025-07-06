@@ -1,19 +1,16 @@
-import {ChangeEvent, FC, useState} from "react";
+import {FC, useState} from "react";
 import styled from "styled-components";
 import {MobileLayout} from "../../MobileLayout";
-import {BaseAppBar} from "../atom/BaseAppBar";
 import {BackCloseAppBar} from "../molecules/BackCloseAppBar";
 import {Button} from "../atom/Button";
-import {CloseAppBar} from "../molecules/CloseAppBar";
 import {Space} from "../../style/Space";
 import {InputLabel} from "../molecules/InputLabel";
 import {InputCheckIcon} from "../../InputCheckIcon";
-import {useAuth} from "../../context/AuthContext";
-import {em} from "polished";
+import {getPasswordValidationResult} from "../../utils/validation";
 
 export type SignUpPasswordStepProps = {
     onPrev: () => void;
-    onNext: (email: string) => void;
+    onNext: (password: string) => void;
     onClose: () => void;
 }
 
@@ -47,27 +44,14 @@ const Option = styled.option`
   font-weight: 600;
 `
 
+
 export const SignUpPasswordStep: FC<SignUpPasswordStepProps> = ({onNext, onPrev, onClose}) => {
-    const [email, setEmail] = useState("")
-    const [domain, setDomain] = useState<string | null>(null);
+    const [password, setPassword] = useState("")
+    const [passwordConfirm, setPasswordConfirm] = useState("")
 
-    const onEmailInput = (value: string) => {
-        setEmail(value);
-    }
+    const {message : passwordValidMessage, isValid : isPasswordValid} = getPasswordValidationResult(password);
+    const isPasswordConfirmValid = password == passwordConfirm && password.length > 0;
 
-    const onDomainChange = (event: ChangeEvent<HTMLSelectElement>) => {
-        const value = event.target.value;
-        setDomain(value)
-    };
-
-    const onNextClick = () => {
-        if(domain == "self") {
-            onNext(email);
-            return
-        }
-
-        onNext(`${email}@${domain}`);
-    }
 
     return (
         <MobileLayout
@@ -75,36 +59,53 @@ export const SignUpPasswordStep: FC<SignUpPasswordStepProps> = ({onNext, onPrev,
             bottom={(
                 <Button
                     $isFullWidth
-                    onClick={() => onNextClick()}
+                    onClick={() => onNext(password)}
+                    isDisabled={!(isPasswordValid && isPasswordConfirmValid)}
                 >다음으로
                 </Button>
             )}
             isBottomPadding
         >
             <Title>
-                <HighLight>이메일</HighLight>을 <br/>
+                <HighLight>비밀번호</HighLight>를 <br/>
                 입력해주세요
             </Title>
 
             <Space v={40}/>
 
             <InputLabel
-                value={email}
-                onChange={setEmail}
-                label={"이메일"}
-                placeholder={"이메일 입력"}
+                value={password}
+                onChange={setPassword}
+                placeholder={"비밀번호 입력"}
+                label={"비밀번호"}
+                type={"password"}
+                bottomMessage={passwordValidMessage}
                 isFullWidth
+                isShowBottomMessageSpace
                 rightAddon={(
-                    <Select value={domain} onChange={onDomainChange}>
-                        <Option disabled={true} selected>이메일 선택</Option>
-                        <Option value={"self"}>직접 입력</Option>
-                        <Option value={"naver.com"}>naver.com</Option>
-                        <Option value={"kakao.com"}>kakao.com</Option>
-                        <Option value={"gmail.com"}>gmail.com</Option>
-                    </Select>
+                    <InputCheckIcon
+                        isSuccess={isPasswordValid}
+                    />
                 )}
             />
 
+            <Space v={26} />
+
+            <InputLabel
+                value={passwordConfirm}
+                onChange={setPasswordConfirm}
+                placeholder={"비밀번호 입력"}
+                label={"비밀번호 확인"}
+                type={"password"}
+                bottomMessage={"비밀번호를 한번 더 입력해주세요."}
+                isFullWidth
+                isShowBottomMessageSpace
+                rightAddon={(
+                    <InputCheckIcon
+                        isSuccess={isPasswordConfirmValid}
+                    />
+                )}
+            />
         </MobileLayout>
     );
 };
