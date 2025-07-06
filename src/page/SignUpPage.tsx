@@ -15,7 +15,7 @@ type InitialStepState = { id?: string, email?: string, password?: string, phoneN
 type IdStepState = { id?: string, email?: string, password?: string, phoneNumber?: string };
 type EmailStepState = { id: string, email?: string, password?: string, phoneNumber?: string };
 type PasswordStepState = { id: string, email: string, password?: string, phoneNumber?: string };
-type CertfyStepState = { id: string, email: string, password: string, phoneNumber?: string };
+type ValidationStepState = { id: string, email: string, password: string, phoneNumber?: string };
 type ComplateStepState = { id: string, email: string, password: string, phoneNumber: string };
 
 type Steps = {
@@ -23,7 +23,7 @@ type Steps = {
     id: IdStepState;
     email: EmailStepState;
     password: PasswordStepState;
-    certify: CertfyStepState;
+    validation: ValidationStepState;
     complete: ComplateStepState
 }
 
@@ -108,11 +108,20 @@ export const SignUpPage: FC<SignUpPageProps> = () => {
     } else if (step === 'password') {
         stepTemplate = (
             <SignUpPasswordStep
-                onNext={(password) => history.push("certify", {password})}
+                onNext={(password) => history.push("validation", {password})}
                 onPrev={() => {}}
                 onClose={() => {}}
             />
         )
+    } else if( step === 'validation') {
+        stepTemplate = (
+            <div>
+                <h2>인증 단계</h2>
+                <Button onClick={onSubmit}>회원가입</Button>
+                <Button onClick={onLogin}>로그인</Button>
+            </div>
+        )
+
     }
 
     return (
