@@ -4,6 +4,8 @@ import {PageLayout} from "../style/PageLayout";
 import {Button} from "../component/atom/Button";
 import Logo from "./../assets/logo.png";
 import {Space} from "../style/Space";
+import {useAuth} from "../context/AuthContext";
+import {LoginReq} from "../types/auth";
 
 export type LoginPageProps = {}
 
@@ -91,8 +93,24 @@ const Text = styled.span`
 `;
 
 export const LoginPage: FC<LoginPageProps> = () => {
+    const {login} = useAuth();
     const [id, setId] = useState("")
     const [password, setPassword] = useState("")
+
+    const onLogin = async () => {
+        try {
+            const req : LoginReq = {
+                loginId : id,
+                password
+            }
+
+            const res = await login(req)
+            console.log("성공", res)
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
 
     return (
         <PageLayout>
@@ -115,8 +133,7 @@ export const LoginPage: FC<LoginPageProps> = () => {
                 />
                 <Space v={12}/>
                 <Button
-                    onClick={() => {
-                    }}
+                    onClick={onLogin}
                     background={"#FDE09D"}
                     color={"GoldenHome"}
                     $isFullWidth
