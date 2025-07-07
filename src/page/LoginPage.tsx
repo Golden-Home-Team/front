@@ -98,6 +98,7 @@ export const LoginPage: FC<LoginPageProps> = () => {
     const [password, setPassword] = useState("")
 
     const onLogin = async () => {
+        //todo: 로직을 tanstack-query로 변경
         try {
             const req : LoginReq = {
                 loginId : id,
