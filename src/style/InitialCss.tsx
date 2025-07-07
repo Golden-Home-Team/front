@@ -24,8 +24,13 @@ export const InitialCss = css`
     box-sizing: border-box;
   }
 
-  /* HTML5 display-role reset for older browsers */
+  a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
 
+  /* HTML5 display-role reset for older browsers */
   article, aside, details, figcaption, figure,
   footer, header, hgroup, menu, nav, section {
     display: block;
