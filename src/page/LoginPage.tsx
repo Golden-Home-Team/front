@@ -6,6 +6,8 @@ import Logo from "./../assets/logo.png";
 import {Space} from "../style/Space";
 import {useAuth} from "../context/AuthContext";
 import {LoginReq} from "../types/auth";
+import {useNavigate} from "react-router-dom";
+import {RoutePath} from "../RoutePath";
 
 export type LoginPageProps = {}
 
@@ -93,6 +95,7 @@ const Text = styled.span`
 `;
 
 export const LoginPage: FC<LoginPageProps> = () => {
+    const navigation = useNavigate();
     const {login} = useAuth();
     const [id, setId] = useState("")
     const [password, setPassword] = useState("")
@@ -106,7 +109,7 @@ export const LoginPage: FC<LoginPageProps> = () => {
             }
 
             const res = await login(req)
-            console.log("성공", res)
+            navigation(RoutePath.main)
         }
         catch (e) {
             console.log(e)
