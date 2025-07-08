@@ -146,7 +146,7 @@ export const color = {
 export const Theme = {
   color,
   size: {
-    mobileMaxWidth: 1000,
+    mobileMaxWidth: "600px",
     borderRadius: "10px",
   }
 }
