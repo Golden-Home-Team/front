@@ -16,12 +16,13 @@ const MainPageStyle = styled.div`
 export const MainPage: FC<MainPageProps> = () => {
     return (
         <PageLayout>
-            <MobileLayout
-                top={<div>헤더</div>}
-                bottom={<div>Bottom</div>}
-            >
+            <MobileLayout>
                 <Link to={RoutePath.signUp}>
                     <Button onClick={() => {}}>회원가입</Button>
+                </Link>
+
+                <Link to={RoutePath.login}>
+                    <Button onClick={() => {}}>로그인</Button>
                 </Link>
             </MobileLayout>
         </PageLayout>

@@ -109,6 +109,7 @@ export const LoginPage: FC<LoginPageProps> = () => {
             }
 
             const res = await login(req)
+            alert("로그인 성공")
             navigation(RoutePath.main)
         }
         catch (e) {
