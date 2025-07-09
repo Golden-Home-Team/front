@@ -1,4 +1,4 @@
-import {FC, useState} from "react";
+import {FC, useEffect, useRef, useState} from "react";
 import styled from "styled-components";
 import {MobileLayout} from "../../MobileLayout";
 import {BaseAppBar} from "../atom/BaseAppBar";
@@ -35,23 +35,37 @@ export const SignUpIdStep: FC<SignUpIdStepProps> = ({onNext, onPrev, onClose}) =
     const {checkUserExists} = useAuth();
     const [id, setId] = useState("")
     const [isIdValid, setIsIdValid] = useState(false);
+    const idValidDebouncing = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-    const onInputId = async (value: string) => {
+    const onInputId = (value: string) => {
         //todo input debounce 적용할것
         //todo id에 추가 제약조건 적용할것
-
         setId(value);
-        if(value.length == 0){
-            setIsIdValid(false);
-            return
+
+        if(idValidDebouncing.current) {
+            clearTimeout(idValidDebouncing.current!!)
         }
-        try {
-            const checkRed = await checkUserExists(value);
-            setIsIdValid(checkRed);
-        } catch (e) {
-            setIsIdValid(false);
-        }
+
+        idValidDebouncing.current = setTimeout(async () => {
+            if(value.length == 0){
+                setIsIdValid(false);
+                return
+            }
+            try {
+                const checkRed = await checkUserExists(value);
+                setIsIdValid(checkRed);
+            } catch (e) {
+                setIsIdValid(false);
+            }
+        }, 200)
     }
+
+    useEffect(() => {
+        return () => {
+            if(idValidDebouncing.current != null)
+                clearTimeout(idValidDebouncing.current!!)
+        }
+    }, [])
 
     return (
         <MobileLayout
