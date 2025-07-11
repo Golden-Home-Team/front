@@ -7,6 +7,7 @@ import {GlobalStyle} from "./style/GlobalStyle";
 import {BrowserRouter} from "react-router-dom";
 import axios from "axios";
 import {AuthProvider} from "./context/AuthContext";
+import {FacilityProvider} from "./context/FacilityContext";
 
 axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
 
@@ -14,10 +15,12 @@ createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <BrowserRouter>
             <AuthProvider>
-                <ThemeProvider theme={Theme}>
-                    <GlobalStyle/>
-                    <App/>
-                </ThemeProvider>
+                <FacilityProvider>
+                    <ThemeProvider theme={Theme}>
+                        <GlobalStyle/>
+                        <App/>
+                    </ThemeProvider>
+                </FacilityProvider>
             </AuthProvider>
         </BrowserRouter>
     </StrictMode>
