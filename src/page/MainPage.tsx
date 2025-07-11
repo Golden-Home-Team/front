@@ -15,7 +15,7 @@ const MainPageStyle = styled.div`
 `
 
 export const MainPage: FC<MainPageProps> = () => {
-    const {getFacilities} = useFacility();
+    const {getFacility} = useFacility();
 
 
     return (
@@ -30,8 +30,9 @@ export const MainPage: FC<MainPageProps> = () => {
                 </Link>
 
                 <Button onClick={() => {
-                    const data = getFacilities("양로원", null, null)
-                    console.log(data)
+                    // const data = getFacilities("양로원", null, null)
+                    // console.log(data)
+                    console.log(getFacility(1))
                 }}>
                     클릭
                 </Button>

@@ -5,6 +5,7 @@ import axios from "axios";
 type FacilityType = "양로원" | "요양원" | "단기보호" | "방문간호" | "방문요양" | "방문목욕" | "주야간보호"
 
 interface FacilityContextProps {
+    getFacility: (id: Facility["id"]) => Promise<Facility>;
     getFacilities: (type: FacilityType, lastId: FacilityType["id"] | null, pageSize: number | null) => Promise<Facility[]>
 }
 
@@ -26,8 +27,16 @@ interface FacilityProviderProps {
 
 
 export const FacilityProvider: FC<FacilityProviderProps> = ({children}) => {
+    const getFacility = async (id: Facility["id"]) => {
+        const res = await axios.get(`/api/facility/${id}`)
+        if(res.status != 200) {
+            throw new Error(`Get facility failed with status code ${res.status}`)
+        }
+        return res.data
+    }
+
     const getFacilities = async (type: FacilityType, lastId: FacilityType["id"] | null, pageSize: number | null) => {
-        const query = qs.stringify({facilityType: type, lastId, pageSize}, {skipNulls: true})
+        const query = qs.stringify({facilityType: type, lastId, pageSize})
 
         const res = await axios.get(`/api/facility/v1/readAll?${query}`)
 
@@ -39,7 +48,7 @@ export const FacilityProvider: FC<FacilityProviderProps> = ({children}) => {
     }
 
     return (
-        <FacilityContext.Provider value={{getFacilities}}>
+        <FacilityContext.Provider value={{getFacility, getFacilities}}>
             {children}
         </FacilityContext.Provider>
     )
