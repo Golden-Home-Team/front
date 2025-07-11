@@ -6,6 +6,7 @@ import {BackCloseAppBar} from "../component/molecules/BackCloseAppBar";
 import {Button} from "../component/atom/Button";
 import {Link} from "react-router-dom";
 import {RoutePath} from "../RoutePath";
+import {useFacility} from "../context/FacilityContext";
 
 
 export type MainPageProps = {}
@@ -14,6 +15,9 @@ const MainPageStyle = styled.div`
 `
 
 export const MainPage: FC<MainPageProps> = () => {
+    const {getFacilities} = useFacility();
+
+
     return (
         <PageLayout>
             <MobileLayout>
@@ -24,6 +28,13 @@ export const MainPage: FC<MainPageProps> = () => {
                 <Link to={RoutePath.login}>
                     <Button onClick={() => {}}>로그인</Button>
                 </Link>
+
+                <Button onClick={() => {
+                    const data = getFacilities("양로원", null, null)
+                    console.log(data)
+                }}>
+                    클릭
+                </Button>
             </MobileLayout>
         </PageLayout>
     );
