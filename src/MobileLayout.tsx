@@ -9,7 +9,7 @@ export type MobileLayoutProps = {
 }
 
 const MobileLayoutStyle = styled.div`
-  height: calc(var(--100vh));
+  min-height: calc(var(--100vh));
   display: flex;
   flex-direction: column;
 `
@@ -18,7 +18,6 @@ const TopWrapper = styled.div``
 
 const BodyWrapper = styled.div`
   flex: 1;
-  padding: 16px;
 `
 
 const BottomWrapper = styled.div<{ isBottomPadding?: boolean }>`

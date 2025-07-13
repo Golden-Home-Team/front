@@ -6,6 +6,7 @@ import {RoutePath} from "./RoutePath";
 import {SignUpPage} from "./page/SignUpPage";
 import {Resize} from "./component/Resize";
 import {LoginPage} from "./page/LoginPage";
+import {FacilityListPage} from "./page/FacilityListPage";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
                 <Route path={RoutePath.main} element={<MainPage/>}/>
                 <Route path={RoutePath.signUp} element={<SignUpPage/>}/>
                 <Route path={RoutePath.login} element={<LoginPage/>}/>
+                <Route path={RoutePath.facilityList} element={<FacilityListPage/>}/>
             </Routes>
         </>
     )
