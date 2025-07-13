@@ -1,14 +1,12 @@
-import {FC, useEffect, useState} from "react";
+import {FC} from "react";
 import styled from "styled-components";
 import {PageLayout} from "../style/PageLayout";
 import {MobileLayout} from "../MobileLayout";
 import {useFacility} from "../context/FacilityContext";
 import {useQuery} from "@tanstack/react-query";
 import {FacilityListItem} from "../component/atom/FacilityListItem";
-import {FacilitySearchReq, FacilityType} from "../types/facility";
 import {ChipSelect} from "../component/atom/ChipSelect";
-import {Button} from "../component/atom/Button";
-import {useSearchParams} from "react-router-dom";
+import {useFacilitySearch} from "../hooks/useFacilitySearch";
 
 
 export type FacilityListPageProps = {}
@@ -16,38 +14,14 @@ export type FacilityListPageProps = {}
 const FacilityListPageStyle = styled.div`
 `
 
-function useFacilitySearch() : {searchReq: FacilitySearchReq, updateSearchParam : (key : string, value : string) => void}{
-    const [params, setParams] = useSearchParams();
-
-    //todo: 이 방법이 최선일까?
-    const searchReq : FacilitySearchReq = {
-        query: params.get('query') ?? '',
-        address: params.get('address') ?? '',
-        facilityType: params.get('facilityType') as FacilityType ?? '',
-        grade: params.get('grade') ?? '',
-        minPrice: Number(params.get('minPrice') ?? 0),
-        maxPrice: Number(params.get('maxPrice') ?? 100000000),
-        withinYears: Number(params.get('withinYears') ?? 0),
-        page: Number(params.get('page') ?? 1),
-        size: Number(params.get('size') ?? 20),
-    };
-    const updateSearchParam = (key: string, value: string | number) => {
-        const next = new URLSearchParams(params);
-        next.set(key, String(value));
-        setParams(next, {replace: true});
-    };
-
-    return {searchReq, updateSearchParam}
-}
-
 export const FacilityListPage: FC<FacilityListPageProps> = () => {
     const {searchFacility} = useFacility();
     const {searchReq, updateSearchParam} = useFacilitySearch()
 
-    const {isLoading, data, error, fetchStatus} = useQuery({
+    const {isLoading, data, error} = useQuery({
         queryKey: ["facilities", searchReq],
         queryFn: async () => await searchFacility(searchReq),
-        staleTime: 1000 * 3,
+        staleTime: 1000 * 5,
     })
 
     return (
