@@ -1,10 +1,11 @@
 import {createContext, FC, ReactNode, useContext} from "react";
 import * as qs from "qs";
 import axios from "axios";
-import {Facility, FacilityType} from "../types/facility";
+import {Facility, FacilitySearchReq, FacilityType} from "../types/facility";
 
 interface FacilityContextProps {
     getFacility: (id: Facility["id"]) => Promise<Facility>;
+    searchFacility: (req : FacilitySearchReq) => Promise<Facility[]>;
 }
 
 const FacilityContext = createContext<FacilityContextProps | null>(null)
@@ -33,8 +34,19 @@ export const FacilityProvider: FC<FacilityProviderProps> = ({children}) => {
         return res.data
     }
 
+    const searchFacility = async (req : FacilitySearchReq) : Promise<Facility[]> => {
+        const query = qs.stringify(req);
+        const res = await axios.get(`/api/facility/v2/readAll?${query}`);
+
+        if(res.status != 200) {
+            throw new Error(`Search facility failed with status code ${res.status}`);
+        }
+
+        return res.data;
+    };
+
     return (
-        <FacilityContext.Provider value={{getFacility}}>
+        <FacilityContext.Provider value={{getFacility, searchFacility}}>
             {children}
         </FacilityContext.Provider>
     )

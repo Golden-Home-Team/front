@@ -13,10 +13,10 @@ const FacilityListPageStyle = styled.div`
 `
 
 export const FacilityListPage: FC<FacilityListPageProps> = () => {
-    const {getFacilities} = useFacility();
+    const {searchFacility} = useFacility();
     const {isLoading, data, error} = useQuery({
         queryKey: [],
-        queryFn: async () => await getFacilities("양로원", null, null),
+        queryFn: async () => await searchFacility({}),
         staleTime: 1000 * 3,
     })
 
