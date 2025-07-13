@@ -21,7 +21,7 @@ export type Facility = {
 export type FacilitySearchReq = {
     query?: string; // 시설명 검색
     address?: string; // 시설주소 검색
-    facilityType?: string; // 시설종류 (e.g. 양로원, 요양원 등)
+    facilityType?: FacilityType; // 시설종류 (e.g. 양로원, 요양원 등)
     grade?: string; // 시설등급
     minPrice?: number; // 최소가격 (default = 0)
     maxPrice?: number; // 최대가격 (default = 100000000)
