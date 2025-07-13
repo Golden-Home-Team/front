@@ -1,7 +1,7 @@
 import {FacilitySearchReq, FacilityType} from "../types/facility";
-import {useSearchParams} from "react-router-dom/dist";
+import {useSearchParams} from "react-router-dom";
 
-export function useFacilitySearch(): { searchReq: FacilitySearchReq, updateSearchParam: (key: string, value: string) => void } {
+export function useFacilitySearch() {
     const [params, setParams] = useSearchParams();
 
     //todo: 이 방법이 최선일까?

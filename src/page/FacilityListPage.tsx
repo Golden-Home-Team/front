@@ -14,6 +14,9 @@ export type FacilityListPageProps = {}
 const FacilityListPageStyle = styled.div`
 `
 
+function useQuerySelectSheet(label: string, name: string) {
+}
+
 export const FacilityListPage: FC<FacilityListPageProps> = () => {
     const {searchFacility} = useFacility();
     const {searchReq, updateSearchParam} = useFacilitySearch()
