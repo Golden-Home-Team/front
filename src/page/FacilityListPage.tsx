@@ -5,8 +5,11 @@ import {MobileLayout} from "../MobileLayout";
 import {useFacility} from "../context/FacilityContext";
 import {useQuery} from "@tanstack/react-query";
 import {FacilityListItem} from "../component/atom/FacilityListItem";
-import {ChipSelect} from "../component/atom/ChipSelect";
 import {useFacilitySearch} from "../hooks/useFacilitySearch";
+import {FacilityType} from "../types/facility";
+import {useBottomSheetSelector} from "../hooks/UseBottomSheetSelector";
+import {Button} from "../component/atom/Button";
+import {FacilitySelectSheet} from "../FacilitySelectSheet";
 
 
 export type FacilityListPageProps = {}
@@ -14,8 +17,6 @@ export type FacilityListPageProps = {}
 const FacilityListPageStyle = styled.div`
 `
 
-function useQuerySelectSheet(label: string, name: string) {
-}
 
 export const FacilityListPage: FC<FacilityListPageProps> = () => {
     const {searchFacility} = useFacility();
@@ -27,30 +28,23 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
         staleTime: 1000 * 5,
     })
 
+    //todo: hook을 사용하는 쪽에서 너무 불편한데 이게 최선일까..?
+    const onOpenTypeSheet = useBottomSheetSelector(
+        "시설 유형",
+        "시설 유형",
+        (onClose) => {
+            const onSelect = (v: FacilityType) => {
+                updateSearchParam("facilityType", v)
+                onClose()
+            }
+            return <FacilitySelectSheet onSelect={onSelect}/>
+        }
+    )
+
     return (
         <PageLayout>
             <MobileLayout>
-                <ChipSelect
-                    name={"시설 유형"}
-                    label={"시설 유형"}
-                    options={["양로원", "요양원", "단기보호", "방문간호", "방문요양", "방문목욕", "주야간보호"]}
-                    onChange={o => updateSearchParam("facilityType", o)}
-                />
-
-                <ChipSelect
-                    name={"시설 등급"}
-                    label={"시설 등급"}
-                    options={["A", "B", "C", "급", "E"]}
-                    onChange={o => updateSearchParam("grade", o)}
-                />
-
-                <ChipSelect
-                    name={"설립 연로"}
-                    label={"설립 연도"}
-                    options={["1", "3", "5", "10"]}
-                    onChange={o => updateSearchParam("withinYears", o)}
-                />
-
+                <Button onClick={onOpenTypeSheet}>시설 type</Button>
                 {isLoading && "로딩중"}
                 {error && "에러"}
                 {data && (
