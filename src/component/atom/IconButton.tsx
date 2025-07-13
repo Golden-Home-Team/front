@@ -28,7 +28,7 @@ const IconButtonStyle = styled.button<IconButtonProps>`
   transition: 300ms;
 
   &:hover {
-    background-color: ${p => p.theme.color.Gray2};
+     background-color: ${p => p.theme.color.Gray2};
   }
 `
 
