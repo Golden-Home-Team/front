@@ -2,12 +2,9 @@ import {FC} from "react";
 import styled from "styled-components";
 import {PageLayout} from "../style/PageLayout";
 import {MobileLayout} from "../MobileLayout";
-import {BackCloseAppBar} from "../component/molecules/BackCloseAppBar";
-import {Button} from "../component/atom/Button";
-import {Link} from "react-router-dom";
-import {RoutePath} from "../RoutePath";
 import {useFacility} from "../context/FacilityContext";
 import {useQuery} from "@tanstack/react-query";
+import {FacilityListItem} from "../component/atom/FacilityListItem";
 
 
 export type FacilityListPageProps = {}
@@ -30,11 +27,11 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
                 {error && "에러"}
                 {data && (
                     data.map(d => (
-                        <li style={{padding: "20px"}} key={d.id}>
+                        <FacilityListItem key={d.id} facility={d}>
                             {d.name}
                             {d.address}
                             {d.capacity}
-                        </li>
+                        </FacilityListItem>
                     ))
                 )}
             </MobileLayout>
