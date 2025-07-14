@@ -1,6 +1,7 @@
 import {FacilitySearchReq, FacilityType} from "../types/facility";
 import {useSearchParams} from "react-router-dom";
 
+//todo: 확장해서 모든 query 객체에서 사용 가능하게 해보자
 export function useFacilitySearch() {
     const [params, setParams] = useSearchParams();
 

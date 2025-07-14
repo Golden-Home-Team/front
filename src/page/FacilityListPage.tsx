@@ -1,4 +1,4 @@
-import {FC} from "react";
+import {FC, useState} from "react";
 import {PageLayout} from "../style/PageLayout";
 import {MobileLayout} from "../MobileLayout";
 import {useFacility} from "../context/FacilityContext";
@@ -12,6 +12,33 @@ import {SearchChip} from "../component/atom/SearchChip";
 import {SortSelectSheet} from "../component/organisms/SortSelectSheet";
 import {GradeSelectSheet} from "../component/organisms/GradeSelectSheet";
 import {WithInYearSelectSheet} from "../component/organisms/WithInYearSelectSheet";
+
+import styled from "styled-components";
+import {Input} from "../component/atom/Input";
+import {Button} from "../component/atom/Button";
+
+export type PriceSelectSheetProps = {
+    initialMinPrice ?: number;
+    initialMaxPrice ?: number;
+    onSelect : (minPrice: number, maxPrice: number) => void;
+}
+
+const PriceSelectSheetStyle = styled.div`
+    
+`
+
+export const PriceSelectSheet : FC<PriceSelectSheetProps> = ({initialMinPrice, initialMaxPrice, onSelect}) => {
+    const [minValue, setMinValue] = useState(initialMinPrice ?? 0)
+    const [maxValue, setMaxValue] = useState(initialMaxPrice ?? 5_720_000)
+
+    return (
+        <PriceSelectSheetStyle>
+            <Input value={minValue.toString()} onChange={v => setMinValue(Number(v))} type={"number"}/>
+            <Input value={maxValue.toString()} onChange={v => setMaxValue(Number(v))} type={"number"}/>
+            <Button onClick={() => onSelect(minValue, maxValue)}>적용</Button>
+        </PriceSelectSheetStyle>
+    );
+};
 
 
 export type FacilityListPageProps = {}
@@ -70,6 +97,18 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
         }
     )
 
+    const onOpenPriceSheet = useBottomSheetSelector(
+        "비용",
+        (onClose) => {
+            const onSelect = (min : number, max : number) => {
+                updateSearchParam("minPrice", min)
+                // updateSearchParam("maxPrice", max)
+                onClose()
+            }
+            return <PriceSelectSheet onSelect={onSelect}/>
+        }
+    )
+
 
     return (
         <PageLayout>
@@ -93,6 +132,13 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
                     label={"설립 연도"}
                     value={searchReq.withinYears ? `${searchReq.withinYears}년 이내` : undefined}
                     onClick={onOpenWithInYearSheet}
+                />
+
+
+                <SearchChip
+                    label={"비용"}
+                    value={searchReq.minPrice?.toString()}
+                    onClick={onOpenPriceSheet}
                 />
 
                 {isLoading && "로딩중"}
