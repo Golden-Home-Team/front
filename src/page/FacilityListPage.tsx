@@ -9,7 +9,7 @@ import {FacilityType} from "../types/facility";
 import {useBottomSheetSelector} from "../hooks/useBottomSheetSelector";
 import {FacilitySelectSheet} from "../component/organisms/FacilitySelectSheet";
 import {SearchChip} from "../component/atom/SearchChip";
-import {SortSelectSheet} from "../SortSelectSheet";
+import {SortSelectSheet} from "../component/organisms/SortSelectSheet";
 
 
 export type FacilityListPageProps = {}
