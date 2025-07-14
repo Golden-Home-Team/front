@@ -8,8 +8,8 @@ import {FacilityListItem} from "../component/atom/FacilityListItem";
 import {useFacilitySearch} from "../hooks/useFacilitySearch";
 import {FacilityType} from "../types/facility";
 import {useBottomSheetSelector} from "../hooks/useBottomSheetSelector";
-import {Button} from "../component/atom/Button";
 import {FacilitySelectSheet} from "../component/organisms/FacilitySelectSheet";
+import {SearchChip} from "../component/atom/SearchChip";
 
 
 export type FacilityListPageProps = {}
@@ -44,7 +44,11 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
     return (
         <PageLayout>
             <MobileLayout>
-                <Button onClick={onOpenTypeSheet}>시설 type</Button>
+                <SearchChip
+                    label={"시설 유형"}
+                    value={searchReq.facilityType}
+                    onClick={onOpenTypeSheet}
+                />
                 {isLoading && "로딩중"}
                 {error && "에러"}
                 {data && (

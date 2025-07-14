@@ -1,9 +1,6 @@
 import {FacilityType} from "../../types/facility";
 import {FC} from "react";
 import styled from "styled-components";
-import 요양원 from "./../../assets/요양원.png"
-import 양로원 from "./../../assets/양로원.png"
-import 단기보호 from "./../../assets/단기보호.png"
 import {facilityIcons} from "../../assets/facilityIcon";
 
 export type FacilitySelectSheetProps = {
