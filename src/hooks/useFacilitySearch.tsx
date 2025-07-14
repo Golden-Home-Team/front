@@ -5,15 +5,24 @@ import {number} from "motion";
 export function useFacilitySearch() {
     const [params, setParams] = useSearchParams();
 
-    const getNumber = (key : string) : number | null => {
+    const getString = (key : string) : string | undefined => {
+        const value = params.get(key)
+        if(value == "" || value == null){
+            return undefined
+        }
+
+        return value
+    }
+
+    const getNumber = (key : string) : number | undefined => {
         const value = params.get(key)
         if(value == "" || value == null) {
-            return null
+            return undefined
         }
 
         const number = Number(value)
         if(isNaN(number)) {
-            return null
+            return undefined
         }
 
         return number
@@ -21,10 +30,10 @@ export function useFacilitySearch() {
 
     //todo: 이 방법이 최선일까?
     const searchReq: FacilitySearchReq = {
-        query: params.get('query'),
-        address: params.get('address'),
-        facilityType: params.get('facilityType') as FacilityType,
-        grade: params.get('grade'),
+        query: getString('query'),
+        address: getString('address'),
+        facilityType: getString('facilityType') as FacilityType,
+        grade: getString('grade'),
         minPrice: getNumber("minPrice"),
         maxPrice: getNumber("maxPrice"),
         withinYears: getNumber("withinYears"),
