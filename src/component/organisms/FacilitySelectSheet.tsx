@@ -2,6 +2,7 @@ import {FacilityType} from "../../types/facility";
 import {FC} from "react";
 import styled from "styled-components";
 import {facilityIcons} from "../../assets/facilityIcon";
+import {SelectListItem} from "../atom/SelectListItem";
 
 export type FacilitySelectSheetProps = {
     onSelect: (v: FacilityType) => void;
@@ -9,24 +10,6 @@ export type FacilitySelectSheetProps = {
 const FacilitySelectSheetStyle = styled.ul`
 `
 
-const ListItem = styled.li`
-  margin-top: 23px;
-
-  display: flex;
-  align-items: center;
-  gap: 12px;
-`
-
-const TypeIcon = styled.img`
-  width: 23px;
-  height: 23px;
-`
-
-const Name = styled.div`
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 22px;
-`
 
 export const FacilitySelectSheet: FC<FacilitySelectSheetProps> = ({onSelect}) => {
     const facilities: FacilityType[] = [
@@ -44,10 +27,11 @@ export const FacilitySelectSheet: FC<FacilitySelectSheetProps> = ({onSelect}) =>
     return (
         <FacilitySelectSheetStyle>
             {facilities.map(name => (
-                <ListItem key={name} onClick={() => onSelect(name)}>
-                    <TypeIcon src={facilityIcons[name]}/>
-                    <Name>{name}</Name>
-                </ListItem>
+                <SelectListItem
+                    icon={facilityIcons[name]}
+                    label={name}
+                    onClick={() => onSelect(name)}
+                />
             ))}
         </FacilitySelectSheetStyle>
     );
