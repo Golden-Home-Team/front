@@ -18,16 +18,16 @@ import {Input} from "../component/atom/Input";
 import {Button} from "../component/atom/Button";
 
 export type PriceSelectSheetProps = {
-    initialMinPrice ?: number;
-    initialMaxPrice ?: number;
-    onSelect : (minPrice: number, maxPrice: number) => void;
+    initialMinPrice?: number;
+    initialMaxPrice?: number;
+    onSelect: (minPrice: number, maxPrice: number) => void;
 }
 
 const PriceSelectSheetStyle = styled.div`
-    
+
 `
 
-export const PriceSelectSheet : FC<PriceSelectSheetProps> = ({initialMinPrice, initialMaxPrice, onSelect}) => {
+export const PriceSelectSheet: FC<PriceSelectSheetProps> = ({initialMinPrice, initialMaxPrice, onSelect}) => {
     const [minValue, setMinValue] = useState(initialMinPrice ?? 0)
     const [maxValue, setMaxValue] = useState(initialMaxPrice ?? 5_720_000)
 
@@ -58,7 +58,7 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
         "시설 유형",
         (onClose) => {
             const onSelect = (v: FacilityType) => {
-                updateSearchParam("facilityType", v)
+                updateSearchParam({facilityType: v})
                 onClose()
             }
             return <FacilitySelectSheet onSelect={onSelect}/>
@@ -78,8 +78,8 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
     const onOpenGradeSheet = useBottomSheetSelector(
         "시설 등급",
         (onClose) => {
-            const onSelect = (v : string) => {
-                updateSearchParam("grade", v)
+            const onSelect = (v: string) => {
+                updateSearchParam({grade: v})
                 onClose()
             }
             return <GradeSelectSheet onSelect={onSelect}/>
@@ -89,8 +89,8 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
     const onOpenWithInYearSheet = useBottomSheetSelector(
         "설립 연도",
         (onClose) => {
-            const onSelect = (v : string) => {
-                updateSearchParam("withinYears", v)
+            const onSelect = (v: string) => {
+                updateSearchParam({withinYears: v})
                 onClose()
             }
             return <WithInYearSelectSheet onSelect={onSelect}/>
@@ -100,12 +100,16 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
     const onOpenPriceSheet = useBottomSheetSelector(
         "비용",
         (onClose) => {
-            const onSelect = (min : number, max : number) => {
-                updateSearchParam("minPrice", min)
-                // updateSearchParam("maxPrice", max)
+            const onSelect = (minPrice: number, maxPrice: number) => {
+                updateSearchParam({minPrice, maxPrice})
                 onClose()
             }
-            return <PriceSelectSheet onSelect={onSelect}/>
+            const {minPrice, maxPrice} = searchReq;
+            return <PriceSelectSheet
+                onSelect={onSelect}
+                initialMinPrice={minPrice as number}
+                initialMaxPrice={maxPrice as number}
+            />
         }
     )
 

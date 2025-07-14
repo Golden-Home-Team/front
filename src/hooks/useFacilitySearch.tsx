@@ -41,7 +41,7 @@ export function useFacilitySearch() {
         page: getNumber("page"),
         size: getNumber("size"),
     };
-    const updateSearchParam = (updates: Partial<Record<string, string | number>>) => {
+    const updateSearchParam = (updates: Partial<Record<keyof FacilitySearchReq, string | number>>) => {
         const next = new URLSearchParams(params);
         Object
             .entries(updates)
@@ -51,6 +51,7 @@ export function useFacilitySearch() {
 
         setParams(next, {replace: true});
     };
+
 
     return {searchReq, updateSearchParam}
 }
