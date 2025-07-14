@@ -1,12 +1,11 @@
 import {createContext, FC, ReactNode, useContext} from "react";
 import * as qs from "qs";
 import axios from "axios";
-
-type FacilityType = "양로원" | "요양원" | "단기보호" | "방문간호" | "방문요양" | "방문목욕" | "주야간보호"
+import {Facility, FacilitySearchReq, FacilityType} from "../types/facility";
 
 interface FacilityContextProps {
     getFacility: (id: Facility["id"]) => Promise<Facility>;
-    getFacilities: (type: FacilityType, lastId: FacilityType["id"] | null, pageSize: number | null) => Promise<Facility[]>
+    searchFacility: (req : FacilitySearchReq) => Promise<Facility[]>;
 }
 
 const FacilityContext = createContext<FacilityContextProps | null>(null)
@@ -35,20 +34,19 @@ export const FacilityProvider: FC<FacilityProviderProps> = ({children}) => {
         return res.data
     }
 
-    const getFacilities = async (type: FacilityType, lastId: FacilityType["id"] | null, pageSize: number | null) => {
-        const query = qs.stringify({facilityType: type, lastId, pageSize})
-
-        const res = await axios.get(`/api/facility/v1/readAll?${query}`)
+    const searchFacility = async (req : FacilitySearchReq) : Promise<Facility[]> => {
+        const query = qs.stringify(req, {skipNulls : true});
+        const res = await axios.get(`/api/facility/v2/readAll?${query}`);
 
         if(res.status != 200) {
-            throw new Error(`Get Facilities failed with status code ${res.status}`)
+            throw new Error(`Search facility failed with status code ${res.status}`);
         }
 
-        return res.data as Facility[]
-    }
+        return res.data;
+    };
 
     return (
-        <FacilityContext.Provider value={{getFacility, getFacilities}}>
+        <FacilityContext.Provider value={{getFacility, searchFacility}}>
             {children}
         </FacilityContext.Provider>
     )

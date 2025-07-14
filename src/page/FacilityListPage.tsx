@@ -1,37 +1,105 @@
 import {FC} from "react";
-import styled from "styled-components";
 import {PageLayout} from "../style/PageLayout";
 import {MobileLayout} from "../MobileLayout";
 import {useFacility} from "../context/FacilityContext";
 import {useQuery} from "@tanstack/react-query";
 import {FacilityListItem} from "../component/atom/FacilityListItem";
+import {useFacilitySearch} from "../hooks/useFacilitySearch";
+import {FacilityType} from "../types/facility";
+import {useBottomSheetSelector} from "../hooks/useBottomSheetSelector";
+import {FacilitySelectSheet} from "../component/organisms/FacilitySelectSheet";
+import {SearchChip} from "../component/atom/SearchChip";
+import {SortSelectSheet} from "../component/organisms/SortSelectSheet";
+import {GradeSelectSheet} from "../component/organisms/GradeSelectSheet";
+import {WithInYearSelectSheet} from "../component/organisms/WithInYearSelectSheet";
 
 
 export type FacilityListPageProps = {}
 
-const FacilityListPageStyle = styled.div`
-`
 
 export const FacilityListPage: FC<FacilityListPageProps> = () => {
-    const {getFacilities} = useFacility();
+    const {searchFacility} = useFacility();
+    const {searchReq, updateSearchParam} = useFacilitySearch()
     const {isLoading, data, error} = useQuery({
-        queryKey: [],
-        queryFn: async () => await getFacilities("양로원", null, null),
-        staleTime: 1000 * 3,
+        queryKey: ["facilities", searchReq],
+        queryFn: async () => await searchFacility(searchReq),
+        staleTime: 1000 * 5,
     })
+
+    //todo: hook을 사용하는 쪽에서 너무 불편한데 이게 최선일까..?
+    const onOpenTypeSheet = useBottomSheetSelector(
+        "시설 유형",
+        (onClose) => {
+            const onSelect = (v: FacilityType) => {
+                updateSearchParam("facilityType", v)
+                onClose()
+            }
+            return <FacilitySelectSheet onSelect={onSelect}/>
+        }
+    )
+
+    const onOpenSortSheet = useBottomSheetSelector(
+        "정렬",
+        (onClose) => {
+            const onSelect = (v: string) => {
+                onClose()
+            }
+            return <SortSelectSheet onSelect={onSelect}/>
+        }
+    )
+
+    const onOpenGradeSheet = useBottomSheetSelector(
+        "시설 등급",
+        (onClose) => {
+            const onSelect = (v : string) => {
+                updateSearchParam("grade", v)
+                onClose()
+            }
+            return <GradeSelectSheet onSelect={onSelect}/>
+        }
+    )
+
+    const onOpenWithInYearSheet = useBottomSheetSelector(
+        "설립 연도",
+        (onClose) => {
+            const onSelect = (v : string) => {
+                updateSearchParam("withinYears", v)
+                onClose()
+            }
+            return <WithInYearSelectSheet onSelect={onSelect}/>
+        }
+    )
+
 
     return (
         <PageLayout>
             <MobileLayout>
+                <SearchChip
+                    label={"시설 유형"}
+                    value={searchReq.facilityType}
+                    onClick={onOpenTypeSheet}
+                />
+                <SearchChip
+                    label={"정렬"}
+                    value={undefined}
+                    onClick={onOpenSortSheet}
+                />
+                <SearchChip
+                    label={"시설 등급"}
+                    value={searchReq.grade}
+                    onClick={onOpenGradeSheet}
+                />
+                <SearchChip
+                    label={"설립 연도"}
+                    value={searchReq.withinYears ? `${searchReq.withinYears}년 이내` : undefined}
+                    onClick={onOpenWithInYearSheet}
+                />
+
                 {isLoading && "로딩중"}
                 {error && "에러"}
                 {data && (
                     data.map(d => (
-                        <FacilityListItem key={d.id} facility={d}>
-                            {d.name}
-                            {d.address}
-                            {d.capacity}
-                        </FacilityListItem>
+                        <FacilityListItem key={d.id} facility={d}/>
                     ))
                 )}
             </MobileLayout>

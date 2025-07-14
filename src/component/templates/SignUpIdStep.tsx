@@ -7,7 +7,7 @@ import {Button} from "../atom/Button";
 import {CloseAppBar} from "../molecules/CloseAppBar";
 import {Space} from "../../style/Space";
 import {InputLabel} from "../molecules/InputLabel";
-import {InputCheckIcon} from "../../InputCheckIcon";
+import {InputCheckIcon} from "../atom/InputCheckIcon";
 import {useAuth} from "../../context/AuthContext";
 
 export type SignUpIdStepProps = {

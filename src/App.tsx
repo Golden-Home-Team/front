@@ -6,6 +6,7 @@ import {RoutePath} from "./RoutePath";
 import {SignUpPage} from "./page/SignUpPage";
 import {Resize} from "./component/Resize";
 import {LoginPage} from "./page/LoginPage";
+import {OverlayProvider} from 'overlay-kit';
 import {FacilityListPage} from "./page/FacilityListPage";
 
 
