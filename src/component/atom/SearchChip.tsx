@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export type SearchChipProps = {
     label: string;
-    value: string;
+    value: string | undefined;
     onClick: () => void;
 }
 const SearchChipStyle = styled.div<{ isActive: boolean }>`
