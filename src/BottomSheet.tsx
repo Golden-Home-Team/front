@@ -2,6 +2,7 @@ import {FC, ReactNode} from "react";
 import styled from "styled-components";
 import {IconButton} from "./component/atom/IconButton";
 import {BsXLg} from "react-icons/bs";
+import {motion, AnimatePresence} from "framer-motion";
 
 export type BottomSheetProps = {
     children: ReactNode;
@@ -53,17 +54,34 @@ const CloseButton = styled.span`
 `
 
 export const BottomSheet: FC<BottomSheetProps> = ({children, title, onClose, isOpen}) => {
-    return isOpen && (
-        <Background>
-            <Container>
-                <CloseButton>
-                    <IconButton onClick={() => onClose()}>
-                        <BsXLg/>
-                    </IconButton>
-                </CloseButton>
-                <Title>{title}</Title>
-                {children}
-            </Container>
-        </Background>
+    return (
+        <AnimatePresence>
+            {isOpen && (
+                <Background
+                    as={motion.div}
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1}}
+                    exit={{opacity: 0}}
+                    transition={{duration: 0.1, ease: "easeIn"}}
+                >
+                    <Container
+                        as={motion.div}
+                        initial={{y: "180%"}}
+                        animate={{y: 0}}
+                        exit={{y: "100%"}}
+                        transition={{duration: 0.1, ease: "easeInOut"}}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <CloseButton>
+                            <IconButton onClick={() => onClose()}>
+                                <BsXLg/>
+                            </IconButton>
+                        </CloseButton>
+                        <Title>{title}</Title>
+                        {children}
+                    </Container>
+                </Background>
+            )}
+        </AnimatePresence>
     );
 };
