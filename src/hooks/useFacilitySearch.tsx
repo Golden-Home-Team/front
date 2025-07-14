@@ -1,6 +1,5 @@
 import {FacilitySearchReq, FacilityType} from "../types/facility";
 import {useSearchParams} from "react-router-dom";
-import {number} from "motion";
 
 export function useFacilitySearch() {
     const [params, setParams] = useSearchParams();
@@ -29,6 +28,7 @@ export function useFacilitySearch() {
     }
 
     //todo: 이 방법이 최선일까?
+    //todo: 또 유효성 검사를 추가해야 하지 않을까?
     const searchReq: FacilitySearchReq = {
         query: getString('query'),
         address: getString('address'),

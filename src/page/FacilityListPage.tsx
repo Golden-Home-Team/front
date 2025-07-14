@@ -52,11 +52,7 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
                 {error && "에러"}
                 {data && (
                     data.map(d => (
-                        <FacilityListItem key={d.id} facility={d}>
-                            {d.name}
-                            {d.address}
-                            {d.capacity}
-                        </FacilityListItem>
+                        <FacilityListItem key={d.id} facility={d}/>
                     ))
                 )}
             </MobileLayout>
