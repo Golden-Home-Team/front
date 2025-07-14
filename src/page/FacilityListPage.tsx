@@ -1,5 +1,4 @@
 import {FC} from "react";
-import styled from "styled-components";
 import {PageLayout} from "../style/PageLayout";
 import {MobileLayout} from "../MobileLayout";
 import {useFacility} from "../context/FacilityContext";
@@ -13,9 +12,6 @@ import {SearchChip} from "../component/atom/SearchChip";
 
 
 export type FacilityListPageProps = {}
-
-const FacilityListPageStyle = styled.div`
-`
 
 
 export const FacilityListPage: FC<FacilityListPageProps> = () => {
