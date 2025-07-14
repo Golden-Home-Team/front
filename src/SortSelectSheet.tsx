@@ -7,9 +7,6 @@ export type SortSelectSheetProps = {
     onSelect: (v: string) => void;
 }
 const SortSelectSheetStyle = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
 `
 export const SortSelectSheet: FC<SortSelectSheetProps> = ({onSelect}) => {
     return (

@@ -8,9 +8,6 @@ export type FacilitySelectSheetProps = {
     onSelect: (v: FacilityType) => void;
 }
 const FacilitySelectSheetStyle = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
 `
 
 
