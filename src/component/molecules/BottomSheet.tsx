@@ -33,7 +33,7 @@ const Container = styled.div`
 
   background-color: #fff;
   border-radius: 10px 10px 0 0;
-  padding: 24px 14px 56px 14px;
+  padding: 24px 17px 56px 17px;
 
   box-shadow: 0 0 20px 0 #47474740;
 
@@ -54,6 +54,12 @@ const CloseButton = styled.span`
 `
 
 export const BottomSheet: FC<BottomSheetProps> = ({children, title, onClose, isOpen}) => {
+    const onBackgroundClick = (e) => {
+        if(e.target != e.currentTarget)
+            return
+
+        onClose();
+    }
     return (
         <AnimatePresence>
             {isOpen && (
@@ -63,6 +69,7 @@ export const BottomSheet: FC<BottomSheetProps> = ({children, title, onClose, isO
                     animate={{opacity: 1}}
                     exit={{opacity: 0}}
                     transition={{duration: 0.1, ease: "easeIn"}}
+                    onClick={onBackgroundClick}
                 >
                     <Container
                         as={motion.div}

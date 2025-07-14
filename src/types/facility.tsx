@@ -29,4 +29,14 @@ export type FacilitySearchReq = {
     page?: number; // 페이지 (default = 1)
     size?: number; // 페이지 크기 (default = 20)
 };
-export type FacilityType = "양로원" | "요양원" | "단기보호" | "방문간호" | "방문요양" | "방문목욕" | "주야간보호"
+
+export type FacilityType =
+  | "요양원"
+  | "요양병원"
+  | "양로원"
+  | "실버타운"
+  | "단기보호"
+  | "주야간보호"
+  | "방문요양"
+  | "방문간호"
+  | "방문목욕";
