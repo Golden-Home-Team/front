@@ -41,7 +41,10 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
         "정렬",
         "정렬",
         (onClose) => {
-            return <SortSelectSheet onSelect={() => {}}/>
+            const onSelect = (v : string) => {
+                onClose()
+            }
+            return <SortSelectSheet onSelect={onSelect}/>
         }
     )
 
