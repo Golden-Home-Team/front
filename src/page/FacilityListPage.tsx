@@ -11,6 +11,7 @@ import {FacilitySelectSheet} from "../component/organisms/FacilitySelectSheet";
 import {SearchChip} from "../component/atom/SearchChip";
 import {SortSelectSheet} from "../component/organisms/SortSelectSheet";
 import {GradeSelectSheet} from "../component/organisms/GradeSelectSheet";
+import {WithInYearSelectSheet} from "../component/organisms/WithInYearSelectSheet";
 
 
 export type FacilityListPageProps = {}
@@ -58,6 +59,18 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
         }
     )
 
+    const onOpenWithInYearSheet = useBottomSheetSelector(
+        "설립 연도",
+        (onClose) => {
+            const onSelect = (v : string) => {
+                updateSearchParam("withinYears", v)
+                onClose()
+            }
+            return <WithInYearSelectSheet onSelect={onSelect}/>
+        }
+    )
+
+
     return (
         <PageLayout>
             <MobileLayout>
@@ -75,6 +88,11 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
                     label={"시설 등급"}
                     value={searchReq.grade}
                     onClick={onOpenGradeSheet}
+                />
+                <SearchChip
+                    label={"설립 연도"}
+                    value={searchReq.withinYears ? `${searchReq.withinYears}년 이내` : undefined}
+                    onClick={onOpenWithInYearSheet}
                 />
 
                 {isLoading && "로딩중"}

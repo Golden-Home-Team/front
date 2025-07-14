@@ -40,7 +40,7 @@ export function useFacilitySearch() {
         page: getNumber("page"),
         size: getNumber("size"),
     };
-    const updateSearchParam = (key: string, value: string | number) => {
+    const updateSearchParam = (key: keyof FacilitySearchReq, value: string | number) => {
         const next = new URLSearchParams(params);
         next.set(key, String(value));
         setParams(next, {replace: true});
