@@ -10,6 +10,7 @@ import {useBottomSheetSelector} from "../hooks/useBottomSheetSelector";
 import {FacilitySelectSheet} from "../component/organisms/FacilitySelectSheet";
 import {SearchChip} from "../component/atom/SearchChip";
 import {SortSelectSheet} from "../component/organisms/SortSelectSheet";
+import {GradeSelectSheet} from "../component/organisms/GradeSelectSheet";
 
 
 export type FacilityListPageProps = {}
@@ -39,10 +40,21 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
     const onOpenSortSheet = useBottomSheetSelector(
         "정렬",
         (onClose) => {
-            const onSelect = (v : string) => {
+            const onSelect = (v: string) => {
                 onClose()
             }
             return <SortSelectSheet onSelect={onSelect}/>
+        }
+    )
+
+    const onOpenGradeSheet = useBottomSheetSelector(
+        "시설 등급",
+        (onClose) => {
+            const onSelect = (v : string) => {
+                updateSearchParam("grade", v)
+                onClose()
+            }
+            return <GradeSelectSheet onSelect={onSelect}/>
         }
     )
 
@@ -59,6 +71,12 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
                     value={undefined}
                     onClick={onOpenSortSheet}
                 />
+                <SearchChip
+                    label={"시설 등급"}
+                    value={searchReq.grade}
+                    onClick={onOpenGradeSheet}
+                />
+
                 {isLoading && "로딩중"}
                 {error && "에러"}
                 {data && (
