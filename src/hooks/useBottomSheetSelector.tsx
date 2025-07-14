@@ -1,9 +1,8 @@
 import {ReactNode} from "react";
 import {overlay} from "overlay-kit";
 import {BottomSheet} from "../component/molecules/BottomSheet";
-import styled from "styled-components";
 
-export function useBottomSheetSelector(label: string, name: string, bottomSheetContent: (onClose: () => void) => ReactNode) {
+export function useBottomSheetSelector(label: string, bottomSheetContent: (onClose: () => void) => ReactNode) {
     const onClick = () => overlay.open(({isOpen, close}) => (
         <BottomSheet
             isOpen={isOpen}

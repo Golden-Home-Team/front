@@ -27,7 +27,6 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
     //todo: hook을 사용하는 쪽에서 너무 불편한데 이게 최선일까..?
     const onOpenTypeSheet = useBottomSheetSelector(
         "시설 유형",
-        "시설 유형",
         (onClose) => {
             const onSelect = (v: FacilityType) => {
                 updateSearchParam("facilityType", v)
@@ -38,7 +37,6 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
     )
 
     const onOpenSortSheet = useBottomSheetSelector(
-        "정렬",
         "정렬",
         (onClose) => {
             const onSelect = (v : string) => {
