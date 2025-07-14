@@ -1,4 +1,4 @@
-import {FacilityType} from "./types/facility";
+import {FacilityType} from "../../types/facility";
 import {FC} from "react";
 import styled from "styled-components";
 

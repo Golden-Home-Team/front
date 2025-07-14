@@ -1,6 +1,6 @@
 import {ReactNode} from "react";
 import {overlay} from "overlay-kit";
-import {BottomSheet} from "../BottomSheet";
+import {BottomSheet} from "../component/molecules/BottomSheet";
 import styled from "styled-components";
 
 export function useBottomSheetSelector(label: string, name: string, bottomSheetContent: (onClose: () => void) => ReactNode) {

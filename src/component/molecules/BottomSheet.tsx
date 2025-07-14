@@ -1,6 +1,6 @@
 import {FC, ReactNode} from "react";
 import styled from "styled-components";
-import {IconButton} from "./component/atom/IconButton";
+import {IconButton} from "../atom/IconButton";
 import {BsXLg} from "react-icons/bs";
 import {motion, AnimatePresence} from "framer-motion";
 

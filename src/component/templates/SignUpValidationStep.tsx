@@ -5,7 +5,7 @@ import {BackCloseAppBar} from "../molecules/BackCloseAppBar";
 import {Button} from "../atom/Button";
 import {Space} from "../../style/Space";
 import {InputLabel} from "../molecules/InputLabel";
-import {InputCheckIcon} from "../../InputCheckIcon";
+import {InputCheckIcon} from "../atom/InputCheckIcon";
 import {LabelWrap} from "../atom/LabelWrap";
 import {Input} from "../atom/Input";
 

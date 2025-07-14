@@ -7,9 +7,9 @@ import {useQuery} from "@tanstack/react-query";
 import {FacilityListItem} from "../component/atom/FacilityListItem";
 import {useFacilitySearch} from "../hooks/useFacilitySearch";
 import {FacilityType} from "../types/facility";
-import {useBottomSheetSelector} from "../hooks/UseBottomSheetSelector";
+import {useBottomSheetSelector} from "../hooks/useBottomSheetSelector";
 import {Button} from "../component/atom/Button";
-import {FacilitySelectSheet} from "../FacilitySelectSheet";
+import {FacilitySelectSheet} from "../component/organisms/FacilitySelectSheet";
 
 
 export type FacilityListPageProps = {}
