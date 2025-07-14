@@ -8,8 +8,6 @@ export type SelectListItemProps = {
 }
 
 const SelectListItemStyle = styled.li`
-  margin-top: 23px;
-
   display: flex;
   align-items: center;
   gap: 12px;

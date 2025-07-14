@@ -9,6 +9,7 @@ import {FacilityType} from "../types/facility";
 import {useBottomSheetSelector} from "../hooks/useBottomSheetSelector";
 import {FacilitySelectSheet} from "../component/organisms/FacilitySelectSheet";
 import {SearchChip} from "../component/atom/SearchChip";
+import {SortSelectSheet} from "../SortSelectSheet";
 
 
 export type FacilityListPageProps = {}
@@ -36,6 +37,14 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
         }
     )
 
+    const onOpenSortSheet = useBottomSheetSelector(
+        "정렬",
+        "정렬",
+        (onClose) => {
+            return <SortSelectSheet onSelect={() => {}}/>
+        }
+    )
+
     return (
         <PageLayout>
             <MobileLayout>
@@ -43,6 +52,11 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
                     label={"시설 유형"}
                     value={searchReq.facilityType}
                     onClick={onOpenTypeSheet}
+                />
+                <SearchChip
+                    label={"정렬"}
+                    value={undefined}
+                    onClick={onOpenSortSheet}
                 />
                 {isLoading && "로딩중"}
                 {error && "에러"}
