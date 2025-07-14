@@ -21,7 +21,6 @@ const FacilityListPageStyle = styled.div`
 export const FacilityListPage: FC<FacilityListPageProps> = () => {
     const {searchFacility} = useFacility();
     const {searchReq, updateSearchParam} = useFacilitySearch()
-
     const {isLoading, data, error} = useQuery({
         queryKey: ["facilities", searchReq],
         queryFn: async () => await searchFacility(searchReq),

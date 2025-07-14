@@ -35,7 +35,7 @@ export const FacilityProvider: FC<FacilityProviderProps> = ({children}) => {
     }
 
     const searchFacility = async (req : FacilitySearchReq) : Promise<Facility[]> => {
-        const query = qs.stringify(req);
+        const query = qs.stringify(req, {skipNulls : true});
         const res = await axios.get(`/api/facility/v2/readAll?${query}`);
 
         if(res.status != 200) {

@@ -19,15 +19,15 @@ export type Facility = {
 };
 
 export type FacilitySearchReq = {
-    query?: string; // 시설명 검색
-    address?: string; // 시설주소 검색
-    facilityType?: FacilityType; // 시설종류 (e.g. 양로원, 요양원 등)
-    grade?: string; // 시설등급
-    minPrice?: number; // 최소가격 (default = 0)
-    maxPrice?: number; // 최대가격 (default = 100000000)
-    withinYears?: number; // 설립연도 N년 이내 (e.g. 1)
-    page?: number; // 페이지 (default = 1)
-    size?: number; // 페이지 크기 (default = 20)
+    query: string | null; // 시설명 검색
+    address: string | null; // 시설주소 검색
+    facilityType: FacilityType | null; // 시설종류 (e.g. 양로원, 요양원 등)
+    grade: string | null; // 시설등급
+    minPrice: number | null; // 최소가격 (default = 0)
+    maxPrice: number | null; // 최대가격 (default = 100000000)
+    withinYears: number | null; // 설립연도 N년 이내 (e.g. 1)
+    page: number | null; // 페이지 (default = 1)
+    size: number | null; // 페이지 크기 (default = 20)
 };
 
 export type FacilityType =
