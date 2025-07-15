@@ -1,12 +1,12 @@
 import {FC, useState} from "react";
 import styled from "styled-components";
-import {MobileLayout} from "../../MobileLayout";
-import {BackCloseAppBar} from "../molecules/BackCloseAppBar";
-import {Button} from "../atom/Button";
-import {Space} from "../../style/Space";
-import {InputLabel} from "../molecules/InputLabel";
-import {InputCheckIcon} from "../atom/InputCheckIcon";
-import {getPasswordValidationResult} from "../../utils/validation";
+import {MobileLayout} from "../../../../MobileLayout";
+import {BackCloseAppBar} from "../../../../component/molecules/BackCloseAppBar";
+import {Button} from "../../../../component/atom/Button";
+import {Space} from "../../../../style/Space";
+import {InputLabel} from "../../../../component/molecules/InputLabel";
+import {InputCheckIcon} from "../../../../component/atom/InputCheckIcon";
+import {getPasswordValidationResult} from "../../../../utils/validation";
 
 export type SignUpPasswordStepProps = {
     onPrev: () => void;

@@ -1,11 +1,11 @@
 import {FC} from "react";
 import styled from "styled-components";
-import {MobileLayout} from "../../MobileLayout";
-import {BaseAppBar} from "../atom/BaseAppBar";
-import {BackCloseAppBar} from "../molecules/BackCloseAppBar";
-import {Button} from "../atom/Button";
-import {CloseAppBar} from "../molecules/CloseAppBar";
-import {Space} from "../../style/Space";
+import {MobileLayout} from "../../../../MobileLayout";
+import {BaseAppBar} from "../../../../component/atom/BaseAppBar";
+import {BackCloseAppBar} from "../../../../component/molecules/BackCloseAppBar";
+import {Button} from "../../../../component/atom/Button";
+import {CloseAppBar} from "../../../../component/molecules/CloseAppBar";
+import {Space} from "../../../../style/Space";
 
 export type SignUpInitialStepProps = {
     onNext: () => void;

@@ -1,12 +1,12 @@
 import {FC} from "react";
-import {PageLayout} from "../../style/PageLayout";
+import {PageLayout} from "../../../../style/PageLayout";
 import styled from "styled-components";
-import Party from "../../assets/party.png"
-import {Space} from "../../style/Space";
-import {Button} from "../atom/Button";
+import Party from "../../../../assets/party.png"
+import {Space} from "../../../../style/Space";
+import {Button} from "../../../../component/atom/Button";
 import {BsChevronRight} from "react-icons/bs";
 import {useNavigate} from "react-router-dom";
-import {RoutePath} from "../../RoutePath";
+import {RoutePath} from "../../../../RoutePath";
 
 export type SignUpComplateStepProps = {}
 

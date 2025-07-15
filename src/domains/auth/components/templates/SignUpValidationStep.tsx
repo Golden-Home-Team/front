@@ -1,13 +1,13 @@
 import {ChangeEvent, FC, useState} from "react";
 import styled from "styled-components";
-import {MobileLayout} from "../../MobileLayout";
-import {BackCloseAppBar} from "../molecules/BackCloseAppBar";
-import {Button} from "../atom/Button";
-import {Space} from "../../style/Space";
-import {InputLabel} from "../molecules/InputLabel";
-import {InputCheckIcon} from "../atom/InputCheckIcon";
-import {LabelWrap} from "../atom/LabelWrap";
-import {Input} from "../atom/Input";
+import {MobileLayout} from "../../../../MobileLayout";
+import {BackCloseAppBar} from "../../../../component/molecules/BackCloseAppBar";
+import {Button} from "../../../../component/atom/Button";
+import {Space} from "../../../../style/Space";
+import {InputLabel} from "../../../../component/molecules/InputLabel";
+import {InputCheckIcon} from "../../../../component/atom/InputCheckIcon";
+import {LabelWrap} from "../../../../component/atom/LabelWrap";
+import {Input} from "../../../../component/atom/Input";
 
 export type SignUpValidationStepProps = {
     onPrev: () => void;

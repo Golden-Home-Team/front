@@ -1,17 +1,17 @@
 import {FC, ReactNode} from "react";
 import styled from "styled-components";
-import {PageLayout} from "../style/PageLayout";
-import {Button} from "../component/atom/Button";
-import {useAuth} from "../context/AuthContext";
-import type {SignUpReq} from "../types/auth";
+import {PageLayout} from "../../../style/PageLayout";
+import {Button} from "../../../component/atom/Button";
+import {useAuth} from "../../../context/AuthContext";
+import type {SignUpReq} from "../../../types/auth";
 import type {UseFunnelOptions} from "@use-funnel/react-router-dom";
 import {useFunnel} from "@use-funnel/react-router-dom";
-import {SignUpInitialStep} from "../component/templates/SignUpInitialStep";
-import {SignUpIdStep} from "../component/templates/SignUpIdStep";
-import {SignUpEmailStep} from "../component/templates/SignUpEmailStep";
-import {SignUpPasswordStep} from "../component/templates/SignUpPasswordStep";
-import {SignUpValidationStep} from "../component/templates/SignUpValidationStep";
-import {SignUpCompleteStep} from "../component/templates/SignUpCompleteStep";
+import {SignUpInitialStep} from "../components/templates/SignUpInitialStep";
+import {SignUpIdStep} from "../components/templates/SignUpIdStep";
+import {SignUpEmailStep} from "../components/templates/SignUpEmailStep";
+import {SignUpPasswordStep} from "../components/templates/SignUpPasswordStep";
+import {SignUpValidationStep} from "../components/templates/SignUpValidationStep";
+import {SignUpCompleteStep} from "../components/templates/SignUpCompleteStep";
 import {useNavigate} from "react-router-dom";
 
 type InitialStepState = { loginId?: string, email?: string, password?: string, phoneNumber?: string };

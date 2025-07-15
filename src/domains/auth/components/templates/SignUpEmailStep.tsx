@@ -1,14 +1,14 @@
 import {ChangeEvent, FC, useState} from "react";
 import styled from "styled-components";
-import {MobileLayout} from "../../MobileLayout";
-import {BaseAppBar} from "../atom/BaseAppBar";
-import {BackCloseAppBar} from "../molecules/BackCloseAppBar";
-import {Button} from "../atom/Button";
-import {CloseAppBar} from "../molecules/CloseAppBar";
-import {Space} from "../../style/Space";
-import {InputLabel} from "../molecules/InputLabel";
-import {InputCheckIcon} from "../atom/InputCheckIcon";
-import {useAuth} from "../../context/AuthContext";
+import {MobileLayout} from "../../../../MobileLayout";
+import {BaseAppBar} from "../../../../component/atom/BaseAppBar";
+import {BackCloseAppBar} from "../../../../component/molecules/BackCloseAppBar";
+import {Button} from "../../../../component/atom/Button";
+import {CloseAppBar} from "../../../../component/molecules/CloseAppBar";
+import {Space} from "../../../../style/Space";
+import {InputLabel} from "../../../../component/molecules/InputLabel";
+import {InputCheckIcon} from "../../../../component/atom/InputCheckIcon";
+import {useAuth} from "../../../../context/AuthContext";
 import {em} from "polished";
 
 export type SignUpEmailStepProps = {
