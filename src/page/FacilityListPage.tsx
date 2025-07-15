@@ -13,6 +13,7 @@ import {SortSelectSheet} from "../component/organisms/SortSelectSheet";
 import {GradeSelectSheet} from "../component/organisms/GradeSelectSheet";
 import {WithInYearSelectSheet} from "../component/organisms/WithInYearSelectSheet";
 import {PriceSelectSheet} from "../component/organisms/PriceSelectSheet";
+import {LocationSelectSheet} from "../LocationSelectSheet";
 
 
 export type FacilityListPageProps = {}
@@ -87,6 +88,13 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
         }
     )
 
+    const onOpenLocationSheet = useBottomSheetSelector(
+        "위치",
+        (onClose) => {
+            return <LocationSelectSheet/>
+        }
+    )
+
 
     return (
         <PageLayout>
@@ -112,12 +120,13 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
                     onClick={onOpenWithInYearSheet}
                 />
 
-
                 <SearchChip
                     label={"비용"}
                     value={searchReq.minPrice?.toString()}
                     onClick={onOpenPriceSheet}
                 />
+
+                <SearchChip label={"위치"} value={undefined} onClick={onOpenLocationSheet}/>
 
                 {isLoading && "로딩중"}
                 {error && "에러"}
