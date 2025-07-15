@@ -1,12 +1,9 @@
 import {MainPage} from "./common/page/MainPage";
-import {Header} from "./component/organisms/Header";
-import {Footer} from "./component/organisms/Footer";
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useLocation, useNavigate, useNavigation} from "react-router-dom";
 import {RoutePath} from "./RoutePath";
 import {SignUpPage} from "./domains/auth/pages/SignUpPage";
 import {Resize} from "./component/Resize";
 import {LoginPage} from "./domains/auth/pages/LoginPage";
-import {OverlayProvider} from 'overlay-kit';
 import {FacilityListPage} from "./domains/facility/pages/FacilityListPage";
 
 
