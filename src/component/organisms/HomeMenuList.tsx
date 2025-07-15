@@ -27,6 +27,7 @@ export const HomeMenuList: FC<HomeMenuListProps> = () => {
         "방문목욕",
     ];
     const navigate = useNavigate();
+    //todo: 반드시 꼭 gpt에게 코드리뷰 받기
 
     return (
         <HomeMenuListStyle>

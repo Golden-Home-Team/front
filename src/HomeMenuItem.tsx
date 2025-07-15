@@ -6,7 +6,8 @@ import styled from "styled-components";
 import {Space} from "./common/style/Space";
 
 export type HomeMenuItemProps = {
-    type: FacilityType | MenuItemType
+    type: FacilityType | MenuItemType;
+    onClick: () => void;
 }
 const HomeMenuItemStyle = styled.li`
   padding: 12px;
@@ -28,9 +29,9 @@ const Name = styled.div`
   text-align: center;
   white-space: nowrap;
 `
-export const HomeMenuItem: FC<HomeMenuItemProps> = ({type, ...rest}) => {
+export const HomeMenuItem: FC<HomeMenuItemProps> = ({type, onClick}) => {
     return (
-        <HomeMenuItemStyle {...rest}>
+        <HomeMenuItemStyle onClick={onClick}>
             <Icon src={allIcons[type]} alt=""/>
             <Space v={5}/>
             <Name>{type}</Name>
