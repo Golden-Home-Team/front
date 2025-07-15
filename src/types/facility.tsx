@@ -16,6 +16,9 @@ export type Facility = {
     address: string; // 소재지
     phoneNumber: string; // 전화번호
     facilityType: string; // 시설 종류
+    grade: string; // 시설 등금
+    price: 15000; // 가격
+    establishmentYear: 2024 // 설립 연도
 };
 
 export type FacilitySearchReq = {
@@ -31,12 +34,12 @@ export type FacilitySearchReq = {
 };
 
 export type FacilityType =
-  | "요양원"
-  | "요양병원"
-  | "양로원"
-  | "실버타운"
-  | "단기보호"
-  | "주야간보호"
-  | "방문요양"
-  | "방문간호"
-  | "방문목욕";
+    | "요양원"
+    | "요양병원"
+    | "양로원"
+    | "실버타운"
+    | "단기보호"
+    | "주야간보호"
+    | "방문요양"
+    | "방문간호"
+    | "방문목욕";

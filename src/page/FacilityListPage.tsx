@@ -123,24 +123,24 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
             <MobileLayout>
                 <SearchChipWrap>
                     <SearchChip
-                        label={"시설 유형"}
-                        value={searchReq.facilityType}
-                        onClick={onOpenTypeSheet}
-                    />
-                    <SearchChip
                         label={"정렬"}
                         value={undefined}
                         onClick={onOpenSortSheet}
                     />
                     <SearchChip
+                        label={"위치"}
+                        value={undefined}
+                        onClick={onOpenLocationSheet}
+                    />
+                    <SearchChip
+                        label={"시설 유형"}
+                        value={searchReq.facilityType}
+                        onClick={onOpenTypeSheet}
+                    />
+                    <SearchChip
                         label={"시설 등급"}
                         value={searchReq.grade}
                         onClick={onOpenGradeSheet}
-                    />
-                    <SearchChip
-                        label={"설립 연도"}
-                        value={searchReq.withinYears ? `${searchReq.withinYears}년 이내` : undefined}
-                        onClick={onOpenWithInYearSheet}
                     />
 
                     <SearchChip
@@ -149,7 +149,13 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
                         onClick={onOpenPriceSheet}
                     />
 
-                    <SearchChip label={"위치"} value={undefined} onClick={onOpenLocationSheet}/>
+                    <SearchChip
+                        label={"설립 연도"}
+                        value={searchReq.withinYears ? `${searchReq.withinYears}년 이내` : undefined}
+                        onClick={onOpenWithInYearSheet}
+                    />
+
+
                 </SearchChipWrap>
 
                 {isLoading && "로딩중"}
