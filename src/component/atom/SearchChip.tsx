@@ -18,6 +18,7 @@ const SearchChipStyle = styled.div<{ isActive: boolean }>`
   align-items: center;
 
   cursor: pointer;
+  white-space: nowrap;
 `
 export const SearchChip: FC<SearchChipProps> = ({label, value, onClick}) => {
     return (

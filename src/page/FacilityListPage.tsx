@@ -12,10 +12,35 @@ import {SearchChip} from "../component/atom/SearchChip";
 import {SortSelectSheet} from "../component/organisms/SortSelectSheet";
 import {GradeSelectSheet} from "../component/organisms/GradeSelectSheet";
 import {WithInYearSelectSheet} from "../component/organisms/WithInYearSelectSheet";
+import {PriceSelectSheet} from "../component/organisms/PriceSelectSheet";
+import styled from "styled-components";
+import {LocationSelectSheet} from "../component/organisms/LocationSelectSheet";
+import {SearchAppBar} from "../component/molecules/SearchAppBar";
 
 
 export type FacilityListPageProps = {}
 
+const SearchChipWrap = styled.div`
+  width: 100%;
+
+  padding: 8px 16px;
+
+  display: flex;
+  gap: 4px;
+
+  overflow-x: auto;
+`
+
+const CountText = styled.div`
+  font-weight: 500;
+  font-size: 12px;
+
+  padding: 4px 17px;
+`
+
+const Highlight = styled.span`
+  color: #4463FF;
+`
 
 export const FacilityListPage: FC<FacilityListPageProps> = () => {
     const {searchFacility} = useFacility();
@@ -31,7 +56,7 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
         "시설 유형",
         (onClose) => {
             const onSelect = (v: FacilityType) => {
-                updateSearchParam("facilityType", v)
+                updateSearchParam({facilityType: v})
                 onClose()
             }
             return <FacilitySelectSheet onSelect={onSelect}/>
@@ -51,8 +76,8 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
     const onOpenGradeSheet = useBottomSheetSelector(
         "시설 등급",
         (onClose) => {
-            const onSelect = (v : string) => {
-                updateSearchParam("grade", v)
+            const onSelect = (v: string) => {
+                updateSearchParam({grade: v})
                 onClose()
             }
             return <GradeSelectSheet onSelect={onSelect}/>
@@ -62,45 +87,98 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
     const onOpenWithInYearSheet = useBottomSheetSelector(
         "설립 연도",
         (onClose) => {
-            const onSelect = (v : string) => {
-                updateSearchParam("withinYears", v)
+            const onSelect = (v: string) => {
+                updateSearchParam({withinYears: v})
                 onClose()
             }
             return <WithInYearSelectSheet onSelect={onSelect}/>
         }
     )
 
+    const onOpenPriceSheet = useBottomSheetSelector(
+        "비용",
+        (onClose) => {
+            const onSelect = (minPrice: number, maxPrice: number) => {
+                updateSearchParam({minPrice, maxPrice})
+                onClose()
+            }
+            const {minPrice, maxPrice} = searchReq;
+            return <PriceSelectSheet
+                onSelect={onSelect}
+                initialMinPrice={minPrice as number}
+                initialMaxPrice={maxPrice as number}
+            />
+        }
+    )
+
+    const onOpenLocationSheet = useBottomSheetSelector(
+        "위치",
+        (onClose) => {
+            return <LocationSelectSheet/>
+        }
+    )
+
 
     return (
         <PageLayout>
-            <MobileLayout>
-                <SearchChip
-                    label={"시설 유형"}
-                    value={searchReq.facilityType}
-                    onClick={onOpenTypeSheet}
-                />
-                <SearchChip
-                    label={"정렬"}
-                    value={undefined}
-                    onClick={onOpenSortSheet}
-                />
-                <SearchChip
-                    label={"시설 등급"}
-                    value={searchReq.grade}
-                    onClick={onOpenGradeSheet}
-                />
-                <SearchChip
-                    label={"설립 연도"}
-                    value={searchReq.withinYears ? `${searchReq.withinYears}년 이내` : undefined}
-                    onClick={onOpenWithInYearSheet}
-                />
+            <MobileLayout
+                top={(
+                    <SearchAppBar
+                        onPrevClick={() => {
+                        }}
+                        onSearch={() => {
+                        }}
+                    />
+                )}
+            >
+                <SearchChipWrap>
+                    <SearchChip
+                        label={"정렬"}
+                        value={undefined}
+                        onClick={onOpenSortSheet}
+                    />
+                    <SearchChip
+                        label={"위치"}
+                        value={undefined}
+                        onClick={onOpenLocationSheet}
+                    />
+                    <SearchChip
+                        label={"시설 유형"}
+                        value={searchReq.facilityType}
+                        onClick={onOpenTypeSheet}
+                    />
+                    <SearchChip
+                        label={"시설 등급"}
+                        value={searchReq.grade}
+                        onClick={onOpenGradeSheet}
+                    />
+
+                    <SearchChip
+                        label={"비용"}
+                        value={searchReq.minPrice?.toString()}
+                        onClick={onOpenPriceSheet}
+                    />
+
+                    <SearchChip
+                        label={"설립 연도"}
+                        value={searchReq.withinYears ? `${searchReq.withinYears}년 이내` : undefined}
+                        onClick={onOpenWithInYearSheet}
+                    />
+
+
+                </SearchChipWrap>
 
                 {isLoading && "로딩중"}
                 {error && "에러"}
                 {data && (
-                    data.map(d => (
-                        <FacilityListItem key={d.id} facility={d}/>
-                    ))
+                    <>
+                        <CountText>
+                            총 <Highlight>{data.length}</Highlight> 개의 검색결과
+                        </CountText>
+                        {data.map(d => (
+                            <FacilityListItem key={d.id} facility={d}/>
+                        ))}
+                    </>
                 )}
             </MobileLayout>
         </PageLayout>

@@ -1,6 +1,7 @@
 import {FC} from "react";
 import styled from "styled-components";
 import {Space} from "../../style/Space";
+import {Facility} from "../../types/facility";
 
 export type FacilityListItemProps = {
     facility: Facility
@@ -9,12 +10,12 @@ export type FacilityListItemProps = {
 const FacilityListItemStyle = styled.li`
   padding: 22px 16px;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto;
   gap: 9px;
 `
 
 const InfoSection = styled.div`
-    
 `
 
 const Type = styled.div`
@@ -41,6 +42,7 @@ const Address = styled.div`
 
 const BedgeWrap = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 4px;
 `
 
@@ -49,6 +51,7 @@ const Bedge = styled.span`
   border-radius: 20px;
   padding: 10px;
   display: inline-block;
+  white-space: nowrap;
 `
 
 const Image = styled.div`
@@ -57,6 +60,7 @@ const Image = styled.div`
 `
 
 export const FacilityListItem: FC<FacilityListItemProps> = ({facility}) => {
+    //todo: 반응형, 이미지 크기가 줄어들게
     return (
         <FacilityListItemStyle>
             <InfoSection>
@@ -66,9 +70,9 @@ export const FacilityListItem: FC<FacilityListItemProps> = ({facility}) => {
                 <Address>{facility.address}</Address>
                 <Space v={12}/>
                 <BedgeWrap>
-                    <Bedge>1등급</Bedge>
+                    <Bedge>{facility.grade}등급</Bedge>
                     <Bedge>대형</Bedge>
-                    <Bedge>2025년</Bedge>
+                    <Bedge>{facility.establishmentYear}년</Bedge>
                     <Bedge>정원 {facility.currentMale}/{facility.currentFemale}명</Bedge>
                 </BedgeWrap>
             </InfoSection>

@@ -1,11 +1,16 @@
 import {ComponentPropsWithRef, FC, ReactNode} from "react";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
+
+type InputStyleProps = {
+    borderRadius?: string;
+    borderColor?: string;
+};
 
 export type InputProps = {
     value: string;
     onChange: (value: string) => void;
     rightAddon?: ReactNode;
-} & ComponentPropsWithRef<'input'>
+} & InputStyleProps & ComponentPropsWithRef<'input'>
 
 const Container = styled.div`
   display: inline-block;
@@ -13,13 +18,22 @@ const Container = styled.div`
   position: relative;
 `
 
-const InputStyle = styled.input`
+const InputStyle = styled.input<InputStyleProps>`
   width: 100%;
   font-size: 13px;
 
-  box-shadow: 0 0 0 1px #A7A7A7;
-  border: none;
-  border-radius: ${p => p.theme.size.borderRadius};
+  ${p => {
+    const {
+        borderRadius = p.theme.size.borderRadius,
+        borderColor = p.theme.color.inactive,
+    } = p;
+    return css`
+      border: none;
+      box-shadow: 0 0 0 1px ${borderColor};
+      border-radius: ${borderRadius};
+    `
+  }};
+
   outline: none;
   padding: 10px;
 
@@ -30,11 +44,11 @@ const InputStyle = styled.input`
 
 const RightAddonStyle = styled.div`
   display: flex;
-  
+
   position: absolute;
   right: 14px;
   top: 50%;
-  
+
   transform: translateY(-50%)
 `
 
