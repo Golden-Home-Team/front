@@ -12,10 +12,9 @@ import {SearchChip} from "../component/atom/SearchChip";
 import {SortSelectSheet} from "../component/organisms/SortSelectSheet";
 import {GradeSelectSheet} from "../component/organisms/GradeSelectSheet";
 import {WithInYearSelectSheet} from "../component/organisms/WithInYearSelectSheet";
-
-import styled from "styled-components";
-import {Input} from "../component/atom/Input";
 import {Button} from "../component/atom/Button";
+import styled from "styled-components";
+import {NumberInput} from "../component/molecules/NumberInput";
 
 export type PriceSelectSheetProps = {
     initialMinPrice?: number;
@@ -27,15 +26,55 @@ const PriceSelectSheetStyle = styled.div`
 
 `
 
+const InputWrap = styled.div`
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto;
+  gap: 7px;
+`
+
+const Sim = styled.div`
+  color: #666666;
+  font-size: 14px;
+  font-weight: 700;
+  
+  padding: 0 12px;
+`
+
 export const PriceSelectSheet: FC<PriceSelectSheetProps> = ({initialMinPrice, initialMaxPrice, onSelect}) => {
     const [minValue, setMinValue] = useState(initialMinPrice ?? 0)
     const [maxValue, setMaxValue] = useState(initialMaxPrice ?? 5_720_000)
 
     return (
         <PriceSelectSheetStyle>
-            <Input value={minValue.toString()} onChange={v => setMinValue(Number(v))} type={"number"}/>
-            <Input value={maxValue.toString()} onChange={v => setMaxValue(Number(v))} type={"number"}/>
-            <Button onClick={() => onSelect(minValue, maxValue)}>적용</Button>
+            <InputWrap>
+                <NumberInput
+                    value={minValue}
+                    onChange={setMinValue}
+                    placeholder={"10,000"}
+                    min={0}
+                    max={5_720_000}
+                    borderRadius={"5px"}
+                    style={{flex: 1}}
+                />
+                <Sim>~</Sim>
+                <NumberInput
+                    value={minValue}
+                    onChange={setMinValue}
+                    placeholder={"10,000"}
+                    min={0}
+                    max={5_720_000}
+                    borderRadius={"5px"}
+                />
+                <Button
+                    onClick={() => onSelect(minValue, maxValue)}
+                    color={"#666666"}
+                    background={"#ffffff"}
+                    borderColor={"#cfcfcf"}
+                    borderRadius={"5px"}
+                >적용</Button>
+            </InputWrap>
+            {/*<Range min={0} max={5_720_000} start={minValue} end={maxValue} onChangeStart={setMinValue}*/}
+            {/*       onChangeEnd={setMaxValue}/>*/}
         </PriceSelectSheetStyle>
     );
 };

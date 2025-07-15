@@ -2,15 +2,19 @@ import {ComponentPropsWithRef, FC, ReactNode} from "react";
 import styled, {css} from "styled-components";
 import {darken, lighten} from 'polished';
 
+type ButtonStyleProps = {
+    color?: string;
+    background?: string;
+    borderColor?: string;
+    borderRadius?: string;
+    $isFullWidth?: boolean;
+}
+
 export type ButtonProps = {
     children: ReactNode;
     onClick: () => void;
-    color?: string;
-    background?: string;
     isDisabled?: boolean;
-    borderRadius?: string;
-    $isFullWidth?: boolean;
-} & ComponentPropsWithRef<'button'>;
+} & ButtonStyleProps & ComponentPropsWithRef<'button'>;
 
 const Color = css<ButtonProps>`
   ${p => {
@@ -45,14 +49,23 @@ const Color = css<ButtonProps>`
   }}
 `
 
-const ButtonStyle = styled.button<ButtonProps>`
+const ButtonStyle = styled.button<ButtonStyleProps>`
   ${Color};
   width: ${p => p.$isFullWidth ? '100%' : 'auto'};
   font-size: 14px;
 
   padding: 10px 20px;
   border: none;
-  border-radius: ${p => p.borderRadius ?? p.theme.size.borderRadius};
+  ${p => {
+    const {
+      borderRadius = p.theme.size.borderRadius,
+      borderColor
+    } = p;
+    return css`
+      border-radius: ${borderRadius};
+      ${borderColor && `box-shadow: 0 0 0 1px ${borderColor}`};
+    `
+  }}
   display: flex;
   align-items: center;
   justify-content: center;
