@@ -13,8 +13,9 @@ import {SortSelectSheet} from "../component/organisms/SortSelectSheet";
 import {GradeSelectSheet} from "../component/organisms/GradeSelectSheet";
 import {WithInYearSelectSheet} from "../component/organisms/WithInYearSelectSheet";
 import {PriceSelectSheet} from "../component/organisms/PriceSelectSheet";
-import {LocationSelectSheet} from "../LocationSelectSheet";
 import styled from "styled-components";
+import {LocationSelectSheet} from "../component/organisms/LocationSelectSheet";
+import {SearchAppBar} from "../component/molecules/SearchAppBar";
 
 
 export type FacilityListPageProps = {}
@@ -120,7 +121,16 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
 
     return (
         <PageLayout>
-            <MobileLayout>
+            <MobileLayout
+                top={(
+                    <SearchAppBar
+                        onPrevClick={() => {
+                        }}
+                        onSearch={() => {
+                        }}
+                    />
+                )}
+            >
                 <SearchChipWrap>
                     <SearchChip
                         label={"정렬"}
