@@ -2,7 +2,7 @@ import {FC, ReactNode} from "react";
 import styled from "styled-components";
 import {PageLayout} from "../../../common/style/PageLayout";
 import {Button} from "../../../component/atom/Button";
-import {useAuth} from "../../../common/context/AuthContext";
+import {useAuth} from "../context/AuthContext";
 import type {SignUpReq} from "../types/auth";
 import type {UseFunnelOptions} from "@use-funnel/react-router-dom";
 import {useFunnel} from "@use-funnel/react-router-dom";

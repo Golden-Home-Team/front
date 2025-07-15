@@ -6,8 +6,8 @@ import {Theme} from "./common/style/theme";
 import {GlobalStyle} from "./common/style/GlobalStyle";
 import {BrowserRouter} from "react-router-dom";
 import axios from "axios";
-import {AuthProvider} from "./common/context/AuthContext";
-import {FacilityProvider} from "./common/context/FacilityContext";
+import {AuthProvider} from "./domains/auth/context/AuthContext";
+import {FacilityProvider} from "./domains/facility/context/FacilityContext";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {OverlayProvider} from 'overlay-kit';
 

@@ -6,7 +6,7 @@ import {BackCloseAppBar} from "../../component/molecules/BackCloseAppBar";
 import {Button} from "../../component/atom/Button";
 import {Link} from "react-router-dom";
 import {RoutePath} from "../../RoutePath";
-import {useFacility} from "../context/FacilityContext";
+import {useFacility} from "../../domains/facility/context/FacilityContext";
 
 
 export type MainPageProps = {}

@@ -1,7 +1,7 @@
 import {createContext, ReactNode, useContext} from "react";
 import axios from "axios";
-import type {LoginReq, LoginRes, SignUpReq} from "../../domains/auth/types/auth";
-import type {ApiResult} from "../types/api";
+import type {LoginReq, LoginRes, SignUpReq} from "../types/auth";
+import type {ApiResult} from "../../../common/types/api";
 
 interface AuthContextProps {
     signUp: (req: SignUpReq) => Promise<ApiResult>;

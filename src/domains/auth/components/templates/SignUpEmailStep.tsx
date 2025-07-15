@@ -8,7 +8,7 @@ import {CloseAppBar} from "../../../../component/molecules/CloseAppBar";
 import {Space} from "../../../../common/style/Space";
 import {InputLabel} from "../../../../component/molecules/InputLabel";
 import {InputCheckIcon} from "../../../../component/atom/InputCheckIcon";
-import {useAuth} from "../../../../common/context/AuthContext";
+import {useAuth} from "../../context/AuthContext";
 import {em} from "polished";
 
 export type SignUpEmailStepProps = {
