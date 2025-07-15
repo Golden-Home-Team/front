@@ -28,9 +28,9 @@ const Name = styled.div`
   text-align: center;
   white-space: nowrap;
 `
-export const HomeMenuItem: FC<HomeMenuItemProps> = ({type}) => {
+export const HomeMenuItem: FC<HomeMenuItemProps> = ({type, ...rest}) => {
     return (
-        <HomeMenuItemStyle>
+        <HomeMenuItemStyle {...rest}>
             <Icon src={allIcons[type]} alt=""/>
             <Space v={5}/>
             <Name>{type}</Name>
