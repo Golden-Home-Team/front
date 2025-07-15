@@ -16,6 +16,7 @@ import {Button} from "../component/atom/Button";
 import styled from "styled-components";
 import {NumberInput} from "../component/molecules/NumberInput";
 import {Range} from "../component/atom/Range";
+import {Space} from "../style/Space";
 
 export type PriceSelectSheetProps = {
     initialMinPrice?: number;
@@ -76,6 +77,7 @@ export const PriceSelectSheet: FC<PriceSelectSheetProps> = ({initialMinPrice, in
                     borderRadius={"5px"}
                 >적용</Button>
             </InputWrap>
+            <Space v={16}/>
             <Range
                 min={0}
                 max={5_720_000}

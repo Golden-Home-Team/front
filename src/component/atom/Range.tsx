@@ -21,8 +21,8 @@ export const Range: FC<RangeProps> = ({min, max, start, end, onChange}) => {
             step={100}
             trackStyle={[{background: '#ffc400', height: 8}]}   // 노란 영역
             handleStyle={[
-                {width: 24, height: 24, borderColor: '#666'},
-                {width: 24, height: 24, borderColor: '#666'},
+                {width: 30, height: 30, borderColor: '#cfcfcf', transform: "translate(-25%, -25%)"},
+                {width: 30, height: 30, borderColor: '#cfcfcf', transform: "translate(-50%, -25%)"},
             ]}
             railStyle={{background: '#e0e0e0', height: 8}}
             onChange={([low, high]) => onChange(low, high)}
