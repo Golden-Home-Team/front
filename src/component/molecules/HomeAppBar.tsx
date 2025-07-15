@@ -3,20 +3,24 @@ import {BaseAppBar} from "../atom/BaseAppBar";
 import Logo from "./../../common/assets/typo_logo.png";
 import styled from "styled-components";
 import {IconButton} from "../atom/IconButton";
-import {BiAlarm, BiBell, BiSearch} from "react-icons/bi";
-import {BsSearch} from "react-icons/bs";
+import {BiBell, BiSearch} from "react-icons/bi";
 
-export type HomeAppBarProps = {
-    onSearchClick: () => void;
-    onAlertClick: () => void;
-}
+export type HomeAppBarProps = {}
 
 const IconWrap = styled.div`
   display: flex;
   gap: 12px;
 `
 
-export const HomeAppBar: FC<HomeAppBarProps> = ({onSearchClick, onAlertClick}) => {
+export const HomeAppBar: FC<HomeAppBarProps> = ({}) => {
+    function onSearchClick() {
+
+    }
+
+    function onAlertClick() {
+
+    }
+
     return (
         <BaseAppBar
             left={
@@ -32,7 +36,6 @@ export const HomeAppBar: FC<HomeAppBarProps> = ({onSearchClick, onAlertClick}) =
                         <BiBell/>
                     </IconButton>
                 </IconWrap>
-            )}
-        />
+            )}></BaseAppBar>
     );
 };

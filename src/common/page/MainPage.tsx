@@ -23,12 +23,7 @@ export const MainPage: FC<MainPageProps> = () => {
         <PageLayout>
             <MobileLayout
                 top={(
-                    <HomeAppBar
-                        onSearchClick={() => {
-                        }}
-                        onAlertClick={() => {
-                        }}
-                    />
+                    <HomeAppBar/>
                 )}
             >
                 <Link to={RoutePath.signUp}>
