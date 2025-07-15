@@ -1,9 +1,9 @@
-import {FacilityType} from "./domains/facility/types/facility";
+import {FacilityType} from "../../domains/facility/types/facility";
 import {FC} from "react";
-import {allIcons} from "./common/assets/facilityIcon";
-import {MenuItemType} from "./common/page/MainPage";
+import {allIcons} from "../../common/assets/facilityIcon";
+import {MenuItemType} from "../../common/page/MainPage";
 import styled from "styled-components";
-import {Space} from "./common/style/Space";
+import {Space} from "../../common/style/Space";
 
 export type HomeMenuItemProps = {
     type: FacilityType | MenuItemType;

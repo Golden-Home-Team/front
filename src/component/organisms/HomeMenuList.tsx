@@ -1,6 +1,6 @@
 import {FC} from "react";
 import {FacilityType} from "../../domains/facility/types/facility";
-import {HomeMenuItem} from "../../HomeMenuItem";
+import {HomeMenuItem} from "../atom/HomeMenuItem";
 import {MenuItemType} from "../../common/page/MainPage";
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";

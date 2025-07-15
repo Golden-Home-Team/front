@@ -16,6 +16,7 @@ import {PriceSelectSheet} from "../components/organisms/PriceSelectSheet";
 import styled from "styled-components";
 import {LocationSelectSheet} from "../components/organisms/LocationSelectSheet";
 import {SearchAppBar} from "../../../component/molecules/SearchAppBar";
+import {useNavigate} from "react-router-dom";
 
 
 export type FacilityListPageProps = {}
@@ -43,6 +44,7 @@ const Highlight = styled.span`
 `
 
 export const FacilityListPage: FC<FacilityListPageProps> = () => {
+    const navigate = useNavigate();
     const {searchFacility} = useFacility();
     const {searchReq, updateSearchParam} = useFacilitySearch()
     const {isLoading, data, error} = useQuery({
@@ -124,10 +126,8 @@ export const FacilityListPage: FC<FacilityListPageProps> = () => {
             <MobileLayout
                 top={(
                     <SearchAppBar
-                        onPrevClick={() => {
-                        }}
-                        onSearch={() => {
-                        }}
+                        onPrevClick={() => navigate(-1, {replace : true})}
+                        onSearch={() => {}}
                     />
                 )}
             >
