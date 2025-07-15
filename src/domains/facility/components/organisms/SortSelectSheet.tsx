@@ -1,11 +1,11 @@
 import {FC} from "react";
 import styled from "styled-components";
-import {SelectListItem} from "../atom/SelectListItem";
-import 조회순 from "../../assets/조회순.svg"
-import 관련도순 from "../../assets/관련도순.svg"
-import 후기많은순 from "../../assets/후기 많은순.svg"
-import 찜많은순 from "../../assets/찜 많은순.svg"
-import 상담많은순 from "../../assets/상담 많은순.svg"
+import {SelectListItem} from "../../../../component/atom/SelectListItem";
+import 조회순 from "../../../../assets/조회순.svg"
+import 관련도순 from "../../../../assets/관련도순.svg"
+import 후기많은순 from "../../../../assets/후기 많은순.svg"
+import 찜많은순 from "../../../../assets/찜 많은순.svg"
+import 상담많은순 from "../../../../assets/상담 많은순.svg"
 
 export type SortSelectSheetProps = {
     onSelect: (v: string) => void;

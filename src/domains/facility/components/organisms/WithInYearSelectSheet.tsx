@@ -1,6 +1,6 @@
 import {FC} from "react";
 import styled from "styled-components";
-import {SelectListItem} from "../atom/SelectListItem";
+import {SelectListItem} from "../../../../component/atom/SelectListItem";
 
 export type WithInYearSelectSheetProps = {
     onSelect: (v: string) => void;

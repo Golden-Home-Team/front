@@ -1,7 +1,7 @@
 import {FC, useEffect, useState} from "react";
 import {useQuery} from "@tanstack/react-query";
 import styled, {css} from "styled-components";
-import {Space} from "../../style/Space";
+import {Space} from "../../../../style/Space";
 
 type AddressTree = Record<string, Record<string, string[]>>;
 export type LocationSelectSheetProps = {}

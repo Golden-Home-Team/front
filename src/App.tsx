@@ -7,7 +7,7 @@ import {SignUpPage} from "./domains/auth/pages/SignUpPage";
 import {Resize} from "./component/Resize";
 import {LoginPage} from "./domains/auth/pages/LoginPage";
 import {OverlayProvider} from 'overlay-kit';
-import {FacilityListPage} from "./page/FacilityListPage";
+import {FacilityListPage} from "./domains/facility/pages/FacilityListPage";
 
 
 function App() {

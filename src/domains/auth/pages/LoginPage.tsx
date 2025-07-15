@@ -5,7 +5,7 @@ import {Button} from "../../../component/atom/Button";
 import Logo from "../../../assets/logo.png";
 import {Space} from "../../../style/Space";
 import {useAuth} from "../../../context/AuthContext";
-import {LoginReq} from "../../../types/auth";
+import {LoginReq} from "../types/auth";
 import {useNavigate} from "react-router-dom";
 import {RoutePath} from "../../../RoutePath";
 

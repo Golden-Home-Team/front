@@ -1,6 +1,6 @@
 import {ReactNode} from "react";
 import {overlay} from "overlay-kit";
-import {BottomSheet} from "../component/molecules/BottomSheet";
+import {BottomSheet} from "../../../component/organisms/BottomSheet";
 
 export function useBottomSheetSelector(label: string, bottomSheetContent: (onClose: () => void) => ReactNode) {
     const onClick = () => overlay.open(({isOpen, close}) => (

@@ -1,6 +1,6 @@
 import {FC} from "react";
 import styled from "styled-components";
-import {Space} from "../../style/Space";
+import {Space} from "../../../../style/Space";
 import {Facility} from "../../types/facility";
 
 export type FacilityListItemProps = {

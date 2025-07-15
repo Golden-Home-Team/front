@@ -1,7 +1,7 @@
 import {createContext, FC, ReactNode, useContext} from "react";
 import * as qs from "qs";
 import axios from "axios";
-import {Facility, FacilitySearchReq, FacilityType} from "../types/facility";
+import {Facility, FacilitySearchReq, FacilityType} from "../domains/facility/types/facility";
 
 interface FacilityContextProps {
     getFacility: (id: Facility["id"]) => Promise<Facility>;

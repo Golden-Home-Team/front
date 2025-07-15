@@ -1,21 +1,21 @@
 import {FC} from "react";
-import {PageLayout} from "../style/PageLayout";
-import {MobileLayout} from "../MobileLayout";
-import {useFacility} from "../context/FacilityContext";
+import {PageLayout} from "../../../style/PageLayout";
+import {MobileLayout} from "../../../MobileLayout";
+import {useFacility} from "../../../context/FacilityContext";
 import {useQuery} from "@tanstack/react-query";
-import {FacilityListItem} from "../component/atom/FacilityListItem";
+import {FacilityListItem} from "../components/atoms/FacilityListItem";
 import {useFacilitySearch} from "../hooks/useFacilitySearch";
 import {FacilityType} from "../types/facility";
 import {useBottomSheetSelector} from "../hooks/useBottomSheetSelector";
-import {FacilitySelectSheet} from "../component/organisms/FacilitySelectSheet";
-import {SearchChip} from "../component/atom/SearchChip";
-import {SortSelectSheet} from "../component/organisms/SortSelectSheet";
-import {GradeSelectSheet} from "../component/organisms/GradeSelectSheet";
-import {WithInYearSelectSheet} from "../component/organisms/WithInYearSelectSheet";
-import {PriceSelectSheet} from "../component/organisms/PriceSelectSheet";
+import {FacilitySelectSheet} from "../components/organisms/FacilitySelectSheet";
+import {SearchChip} from "../../../component/atom/SearchChip";
+import {SortSelectSheet} from "../components/organisms/SortSelectSheet";
+import {GradeSelectSheet} from "../components/organisms/GradeSelectSheet";
+import {WithInYearSelectSheet} from "../components/organisms/WithInYearSelectSheet";
+import {PriceSelectSheet} from "../components/organisms/PriceSelectSheet";
 import styled from "styled-components";
-import {LocationSelectSheet} from "../component/organisms/LocationSelectSheet";
-import {SearchAppBar} from "../component/molecules/SearchAppBar";
+import {LocationSelectSheet} from "../components/organisms/LocationSelectSheet";
+import {SearchAppBar} from "../../../component/molecules/SearchAppBar";
 
 
 export type FacilityListPageProps = {}

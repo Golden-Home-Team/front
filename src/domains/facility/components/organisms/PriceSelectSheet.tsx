@@ -1,8 +1,8 @@
 import {FC, useState} from "react";
-import {NumberInput} from "../molecules/NumberInput";
-import {Button} from "../atom/Button";
-import {Space} from "../../style/Space";
-import {Range} from "../atom/Range";
+import {NumberInput} from "../../../../component/molecules/NumberInput";
+import {Button} from "../../../../component/atom/Button";
+import {Space} from "../../../../style/Space";
+import {Range} from "../../../../component/atom/Range";
 import styled from "styled-components";
 
 export type PriceSelectSheetProps = {
