@@ -1,10 +1,10 @@
 import {FC, useState} from "react";
 import styled from "styled-components";
-import {PageLayout} from "../../../style/PageLayout";
+import {PageLayout} from "../../../common/style/PageLayout";
 import {Button} from "../../../component/atom/Button";
-import Logo from "../../../assets/logo.png";
-import {Space} from "../../../style/Space";
-import {useAuth} from "../../../context/AuthContext";
+import Logo from "../../../common/assets/logo.png";
+import {Space} from "../../../common/style/Space";
+import {useAuth} from "../../../common/context/AuthContext";
 import {LoginReq} from "../types/auth";
 import {useNavigate} from "react-router-dom";
 import {RoutePath} from "../../../RoutePath";

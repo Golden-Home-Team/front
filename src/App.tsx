@@ -1,4 +1,4 @@
-import {MainPage} from "./page/MainPage";
+import {MainPage} from "./common/page/MainPage";
 import {Header} from "./component/organisms/Header";
 import {Footer} from "./component/organisms/Footer";
 import {Route, Routes} from "react-router-dom";

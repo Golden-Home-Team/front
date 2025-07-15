@@ -1,7 +1,7 @@
 import {FacilityType} from "../../types/facility";
 import {FC} from "react";
 import styled from "styled-components";
-import {facilityIcons} from "../../../../assets/facilityIcon";
+import {facilityIcons} from "../../../../common/assets/facilityIcon";
 import {SelectListItem} from "../../../../component/atom/SelectListItem";
 
 export type FacilitySelectSheetProps = {

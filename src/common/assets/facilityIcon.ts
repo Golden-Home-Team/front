@@ -7,7 +7,7 @@ import 주야간보호 from "./주야간보호.png";
 import 방문요양 from "./방문요양.png";
 import 방문간호 from "./방문간호.png";
 import 방문목욕 from "./방문목욕.png";
-import {FacilityType} from "../domains/facility/types/facility";
+import {FacilityType} from "../../domains/facility/types/facility";
 
 export const facilityIcons: Record<FacilityType, string> = {
     요양원,

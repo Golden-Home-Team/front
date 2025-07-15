@@ -5,7 +5,7 @@ import {BaseAppBar} from "../../../../component/atom/BaseAppBar";
 import {BackCloseAppBar} from "../../../../component/molecules/BackCloseAppBar";
 import {Button} from "../../../../component/atom/Button";
 import {CloseAppBar} from "../../../../component/molecules/CloseAppBar";
-import {Space} from "../../../../style/Space";
+import {Space} from "../../../../common/style/Space";
 
 export type SignUpInitialStepProps = {
     onNext: () => void;

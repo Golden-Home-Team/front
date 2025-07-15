@@ -1,7 +1,7 @@
 import {FC, useState} from "react";
 import {NumberInput} from "../../../../component/molecules/NumberInput";
 import {Button} from "../../../../component/atom/Button";
-import {Space} from "../../../../style/Space";
+import {Space} from "../../../../common/style/Space";
 import {Range} from "../../../../component/atom/Range";
 import styled from "styled-components";
 

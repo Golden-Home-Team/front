@@ -1,6 +1,6 @@
 import {createContext, ReactNode, useContext} from "react";
 import axios from "axios";
-import type {LoginReq, LoginRes, SignUpReq} from "../domains/auth/types/auth";
+import type {LoginReq, LoginRes, SignUpReq} from "../../domains/auth/types/auth";
 import type {ApiResult} from "../types/api";
 
 interface AuthContextProps {

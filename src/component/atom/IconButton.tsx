@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {color as Color} from "../../style/theme.js";
+import {color as Color} from "../../common/style/theme.js";
 import {FC, ReactNode} from "react";
 
 type IconButtonProps = {

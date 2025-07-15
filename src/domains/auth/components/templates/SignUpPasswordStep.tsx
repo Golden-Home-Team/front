@@ -3,10 +3,10 @@ import styled from "styled-components";
 import {MobileLayout} from "../../../../MobileLayout";
 import {BackCloseAppBar} from "../../../../component/molecules/BackCloseAppBar";
 import {Button} from "../../../../component/atom/Button";
-import {Space} from "../../../../style/Space";
+import {Space} from "../../../../common/style/Space";
 import {InputLabel} from "../../../../component/molecules/InputLabel";
 import {InputCheckIcon} from "../../../../component/atom/InputCheckIcon";
-import {getPasswordValidationResult} from "../../../../utils/validation";
+import {getPasswordValidationResult} from "../../../../common/utils/validation";
 
 export type SignUpPasswordStepProps = {
     onPrev: () => void;
