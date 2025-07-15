@@ -13,6 +13,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   *, *::before, *::after {
-    font-family: "SUIT Variable", sans-serif;
+    font-family: "Pretendard", sans-serif;
   }
 `
