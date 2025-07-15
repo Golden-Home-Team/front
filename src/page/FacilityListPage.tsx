@@ -15,6 +15,7 @@ import {WithInYearSelectSheet} from "../component/organisms/WithInYearSelectShee
 import {Button} from "../component/atom/Button";
 import styled from "styled-components";
 import {NumberInput} from "../component/molecules/NumberInput";
+import {Range} from "../component/atom/Range";
 
 export type PriceSelectSheetProps = {
     initialMinPrice?: number;
@@ -37,7 +38,10 @@ const Sim = styled.div`
   font-size: 14px;
   font-weight: 700;
   
-  padding: 0 12px;
+  padding: 0 7px;
+  
+  display: flex;
+  align-items: center;
 `
 
 export const PriceSelectSheet: FC<PriceSelectSheetProps> = ({initialMinPrice, initialMaxPrice, onSelect}) => {
@@ -54,12 +58,11 @@ export const PriceSelectSheet: FC<PriceSelectSheetProps> = ({initialMinPrice, in
                     min={0}
                     max={5_720_000}
                     borderRadius={"5px"}
-                    style={{flex: 1}}
                 />
                 <Sim>~</Sim>
                 <NumberInput
-                    value={minValue}
-                    onChange={setMinValue}
+                    value={maxValue}
+                    onChange={setMaxValue}
                     placeholder={"10,000"}
                     min={0}
                     max={5_720_000}
@@ -73,8 +76,13 @@ export const PriceSelectSheet: FC<PriceSelectSheetProps> = ({initialMinPrice, in
                     borderRadius={"5px"}
                 >적용</Button>
             </InputWrap>
-            {/*<Range min={0} max={5_720_000} start={minValue} end={maxValue} onChangeStart={setMinValue}*/}
-            {/*       onChangeEnd={setMaxValue}/>*/}
+            <Range
+                min={0}
+                max={5_720_000}
+                start={minValue}
+                end={maxValue}
+                onChange={(s: number, e: number) => {setMinValue(s); setMaxValue(e)}}
+            />
         </PriceSelectSheetStyle>
     );
 };
