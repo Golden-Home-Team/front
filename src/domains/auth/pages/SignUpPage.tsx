@@ -33,7 +33,7 @@ type Steps = {
 export type SignUpPageProps = {}
 
 const SignupPageStyle = styled.div`
-
+    padding: 0 20px;
 `
 
 export const SignUpPage: FC<SignUpPageProps> = () => {
